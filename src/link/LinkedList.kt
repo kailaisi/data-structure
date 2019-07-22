@@ -111,6 +111,22 @@ class LinkedList<E> {
         builder.append("]")
         return builder.toString()
     }
+
+    fun removeElement(e: E) {
+        var pre = dummyHead
+        while (pre?.next != null) {
+            if (pre?.next?.e == e) {
+                break
+            }
+            pre = pre.next
+        }
+        if (pre?.next != null) {
+            var node = pre.next
+            pre.next = node?.next
+            node?.next = null
+            size--
+        }
+    }
 }
 
 fun main() {
