@@ -19,7 +19,7 @@ public class Solution141 {
     }
 
     public boolean hasCycle(ListNode head) {
-        // TODO: 2019/7/22 未实现功能 
+        // TODO: 2019/7/22 未实现功能
         TreeSet<Integer> set = new TreeSet<>();
         ListNode cur = head;
         while (cur != null) {

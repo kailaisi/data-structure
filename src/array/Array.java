@@ -14,10 +14,18 @@ public class Array<E> {
         this.size = 0;
     }
 
+
     public Array() {
         this(10);
     }
 
+    public Array(E[] arr) {
+        data = (E[]) new Object[arr.length];
+        for (int i=0;i<arr.length;i++){
+            data[i]=arr[i];
+        }
+        this.size = arr.length;
+    }
     public int getSize() {
         return size;
     }
@@ -124,6 +132,14 @@ public class Array<E> {
         }
     }
 
+    public void swap(int i,int j){
+        if(i<0|| i>=size ||j<0||j>=size){
+            throw new IllegalArgumentException("大兄弟，越界了");
+        }
+        E t=data[i];
+        data[i]=data[j];
+        data[j]=t;
+    }
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
