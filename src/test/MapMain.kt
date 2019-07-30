@@ -4,6 +4,7 @@ import tree.AVLMap
 import tree.BSTMap
 import interf.Map
 import link.LinkedListMap
+import tree.RBTree
 import java.util.*
 
 /**
@@ -41,4 +42,7 @@ fun main() {
 
     var listMap = LinkedListMap<String, Int>()
     println(MapMain.testMap(listMap,filename))
+
+    var rbTree = RBTree<String, Int>()
+    println(MapMain.testMap(rbTree,filename))
 }

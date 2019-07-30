@@ -1,20 +1,19 @@
-package test
+package tree
 
-import Utils
-import tree.AVLTree
-import tree.BSTMap
-import tree.RBTree
-import java.util.*
+import kotlin.random.Random
 
 /**
- *描述：
+ *描述：AVL和红黑树进行
  *<p/>作者：wu
- *<br/>创建时间：2019/7/26 11:50
+ *<br/>创建时间：2019/7/30 18:13
  */
 fun main() {
-    val list = Utils.readFile("F:\\workspace\\web\\data-structure\\Array\\src\\pride.txt")
+    var list= arrayListOf<Int>()
+    for (i in 0..2000000){
+        list.add(Random.nextInt(Int.MAX_VALUE))
+    }
     var start = System.nanoTime()
-    val bst = BSTMap<String, Int>()
+    val bst = BSTMap<Int, Int>()
     list.forEach {
         if (bst.contains(it)) {
             bst.set(it, 1.minus(bst.get(it) ?: 0))
@@ -28,7 +27,7 @@ fun main() {
     var end = System.nanoTime()
     println("BST:${(end - start) / 1000000000.0}s")
     start = System.nanoTime()
-    val avlTree = AVLTree<String, Int>()
+    val avlTree = AVLTree<Int, Int>()
     list.forEach {
         if (avlTree.contains(it)) {
             avlTree.set(it, 1.minus(avlTree.get(it) ?: 0))
@@ -43,7 +42,7 @@ fun main() {
     println("AVL:${(end - start) / 1000000000.0}s")
 
     start = System.nanoTime()
-    val rbTree = RBTree<String, Int>()
+    val rbTree = RBTree<Int, Int>()
     list.forEach {
         if (rbTree.contains(it)) {
             rbTree.set(it, 1.minus(rbTree.get(it) ?: 0))
