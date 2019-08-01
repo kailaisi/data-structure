@@ -18,6 +18,10 @@ class NumArray2(nums: IntArray) {
     fun sumRange(i: Int, j: Int): Int {
         return sum[j + 1] - sum[i]
     }
+
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
 }
 
 fun main() {
