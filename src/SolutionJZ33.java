@@ -23,12 +23,4 @@ public class SolutionJZ33 {
         }
         return  list.get(index-1);
     }
-
-    private int getIndex(char c) {
-        if (c >= 'a' && c <= 'z') {
-            return c - 'a';
-        } else {
-            return c - 'A' + 26;
-        }
-    }
 }
