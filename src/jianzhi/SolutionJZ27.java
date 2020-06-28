@@ -1,3 +1,5 @@
+package jianzhi;
+
 import array.Array;
 
 import java.util.ArrayList;
