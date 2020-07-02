@@ -6,7 +6,7 @@ package jianzhi;
  * 解题思路：
  * 注意：这里的节点，居然有相同的。而且不是排序的
  * 1.首先找到2个树的相同的节点。
- * 2.从节点开始遍历，然后看两个左右是否相等。
+ * 2.从节点开始遍历，然后看两个树是否包含。
  */
 public class SolutionJZ17 {
     public static void main(String[] args) {
@@ -22,43 +22,28 @@ public class SolutionJZ17 {
         if (root1 == null) {
             return false;
         }
-        TreeNode node = findNode(root1, root2);
-        if (node == null) {
+        if (root2 == null) {
             return false;
-        } else {
-            return isMatch(root1, node);
         }
-    }
-
-    //判断节点是否相等
-    private boolean isMatch(TreeNode root1, TreeNode node) {
-        if (root1 == null && node == null) {//都为空，相等
+        //当前节点相等，判断节点之下的数据是否匹配
+        if (root1.val == root2.val && isMatch(root1, root2)) {
             return true;
         }
-        if (root1 == null || node == null) {//走到这里，说明只有一个为空
+        //节点不相等。遍历root的左右两个节点
+        return isSub(root1, root2.left) || isSub(root1, root2.right);
+    }
+
+    //判断node节点是否包含root1
+    private boolean isMatch(TreeNode root1, TreeNode node) {
+        if (root1 == null) {//root1为空,证明node完全包含了root1的数据
+            return true;
+        }
+        if (node == null) {//走到这里，说明node完了，root1没走完。肯定就不匹配了
             return false;
         }
-        return isMatch(root1.left, node.left) && isMatch(root1.right, node.right);
+        //判断当前节点相等，且其左右之后的节点都匹配
+        return root1.val==node.val && isMatch(root1.left, node.left) && isMatch(root1.right, node.right);
     }
-
-    //获取到相同的节点
-    private TreeNode findNode(TreeNode root1, TreeNode root2) {
-        if (root2 == null) {
-            return null;
-        }
-        boolean match=false;
-        boolean match1 = isMatch(root1, root2);
-        if (root2.val == root1.val) {
-            return root2;
-        }
-        TreeNode node = findNode(root1, root2.left);
-        if (node != null) {
-            return node;
-        }
-        node = findNode(root1, root2.right);
-        return node;
-    }
-
 
     public static class TreeNode {
         int val = 0;
