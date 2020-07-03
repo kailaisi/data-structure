@@ -9,30 +9,43 @@ package jianzhi;
  */
 public class SolutionJZ58 {
     public static void main(String[] args) {
-
+        TreeNode node8 = new TreeNode(8);
+        TreeNode left6 = new TreeNode(6);
+        TreeNode right6 = new TreeNode(6);
+        TreeNode left5 = new TreeNode(5);
+        TreeNode left7 = new TreeNode(7);
+        TreeNode right7 = new TreeNode(7);
+        TreeNode right5 = new TreeNode(5);
+        node8.left = left6;
+        node8.right = right6;
+        left6.left = left5;
+        left6.right = left7;
+        right6.left = right7;
+        right6.right = right5;
+        System.out.println(isSymmetrical(node8));
     }
-    boolean isSymmetrical(TreeNode pRoot)
-    {
-        if(pRoot==null){
+
+    static boolean isSymmetrical(TreeNode pRoot) {
+        if (pRoot == null) {
             return true;
         }
-        return isSymmetrical(pRoot.left,pRoot.right);
+        return isSymmetrical(pRoot.left, pRoot.right);
     }
 
     /**
      * 判断二者是否完全是镜像
      */
-    private boolean isSymmetrical(TreeNode left, TreeNode right) {
+    private static boolean isSymmetrical(TreeNode left, TreeNode right) {
         //都为空，算镜像
-        if(left==null && right==null){
+        if (left == null && right == null) {
             return true;
         }
         //其中一个为空，不为镜像
-        if(left!=null || right!=null){
+        if (left == null || right == null) {
             return false;
         }
         //当前节点相同。而且A的左节点和B的右节点是是镜像。A的右节点跟B的左节点也是镜像
-        return left.val==right.val && isSymmetrical(left.left,right.right)&& isSymmetrical(left.right,right.left);
+        return left.val == right.val && isSymmetrical(left.left, right.right) && isSymmetrical(left.right, right.left);
     }
 
     public static class TreeNode {

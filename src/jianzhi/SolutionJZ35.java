@@ -1,5 +1,8 @@
 package jianzhi;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * 在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P%1000000007
  * 输入描述:
@@ -18,22 +21,23 @@ package jianzhi;
  */
 public class SolutionJZ35 {
     public static void main(String[] args) {
-        int[] ints = {1, 2, 3, 4, 5, 6, 7, 0};
-        System.out.println(InversePairs(ints));
+        int[] ints = {7, 2, 4, 3, 1, 6, 5, 0};
+        int[] aints={1,2,3,4,5,6,7,0};
+        System.out.println(InversePairs(aints));
     }
     public static int InversePairs(int [] array) {
-        int[] ints = new int[array.length];
+        ArrayList<Integer> list = new ArrayList<>();
         int count=0;
-        for(int i=0;i<array.length-1;i++){
-            binarySearch()
-            if(array[i]<array[i+1]){
-                count++;
-            }
+        for(int i=0;i<array.length;i++){
+            int num = array[i];
+            int i1 = binarySearch(list, list.size(),num);
+            list.add(-i1,num);
+            count+=(list.size()-1+i1);
         }
         return count%1000000007;
     }
     // 二分查找法，查找位置
-    static int binarySearch(int[] array, int size, int value) {
+    static int binarySearch(ArrayList<Integer> array, int size, int value) {
         //定义低位
         int lo = 0;
         //定义高位
@@ -41,7 +45,7 @@ public class SolutionJZ35 {
         //遍历循环，知道搜索到目标
         while (lo <= hi) {
             final int mid = (lo + hi) >>> 1;
-            final int midVal = array[mid];
+            final int midVal = array.get(mid);
 
             if (midVal < value) {
                 lo = mid + 1;
@@ -51,6 +55,8 @@ public class SolutionJZ35 {
                 return mid;  // value found
             }
         }
-        return ~lo;  // value not present
+        System.out.println(lo);
+        System.out.println(-lo);
+        return -lo;  // value not present
     }
 }
