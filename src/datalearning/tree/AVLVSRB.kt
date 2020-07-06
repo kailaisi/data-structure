@@ -1,4 +1,4 @@
-package tree
+package datalearning.tree
 
 import kotlin.random.Random
 

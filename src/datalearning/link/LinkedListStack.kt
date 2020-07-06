@@ -1,6 +1,6 @@
-package link
+package datalearning.link
 
-import interf.Stack
+import datalearning.interf.Stack
 import java.lang.StringBuilder
 
 /**
@@ -10,7 +10,7 @@ import java.lang.StringBuilder
  */
 class LinkedListStack<E> : Stack<E> {
 
-    private var linkedList=LinkedList<E>()
+    private var linkedList= LinkedList<E>()
 
     override fun getSize(): Int =linkedList.size
 

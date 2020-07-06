@@ -1,6 +1,6 @@
-package link
+package datalearning.link
 
-import interf.Map
+import datalearning.interf.Map
 import java.lang.IllegalArgumentException
 
 /**

@@ -1,4 +1,4 @@
-package hashcode
+package datalearning.hash
 
 import java.util.*
 

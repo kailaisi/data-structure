@@ -1,10 +1,10 @@
 package test
 
 import Utils
-import interf.Set
-import link.LinkedListSet
-import tree.AVLSet
-import tree.BSTSet
+import datalearning.interf.Set
+import datalearning.link.LinkedListSet
+import datalearning.tree.AVLSet
+import datalearning.tree.BSTSet
 
 /**
  *描述：

@@ -1,6 +1,6 @@
-package array
+package datalearning.array
 
-import interf.Stack
+import datalearning.interf.Stack
 
 /**
  * 描述：

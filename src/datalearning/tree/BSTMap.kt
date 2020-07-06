@@ -1,7 +1,7 @@
-package tree
+package datalearning.tree
 
 import Utils
-import interf.Map
+import datalearning.interf.Map
 
 /**
  *描述：二分搜索树,对于有序的代码，会退化成为O(n)的函数

@@ -1,12 +1,12 @@
-package link
-import interf.Set
+package datalearning.link
+import datalearning.interf.Set
 /**
  *描述：
  *<p/>作者：wu
  *<br/>创建时间：2019/7/22 9:33
  */
-class LinkedListSet<E>:Set<E>{
-    var linkedList=LinkedList<E>()
+class LinkedListSet<E>: Set<E> {
+    var linkedList= LinkedList<E>()
 
     override fun add(e: E) {
         if(!linkedList.contains(e)){

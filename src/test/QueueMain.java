@@ -1,9 +1,9 @@
 package test;
 
-import interf.Queue;
-import queue.ArrayQueue;
-import queue.LinkedListQueue;
-import queue.LoopQueue;
+import datalearning.interf.Queue;
+import datalearning.queue.ArrayQueue;
+import datalearning.queue.LinkedListQueue;
+import datalearning.queue.LoopQueue;
 
 import java.util.Random;
 

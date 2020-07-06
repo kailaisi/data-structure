@@ -1,12 +1,18 @@
 package maxheap
 
-import array.Array
+import datalearning.array.Array
 import kotlin.random.Random
 
 
 /**
- *描述：完全二叉树。增加和移除顶部的时间负责度都是log(n)级别的
+ *描述：基于数组的最大堆。顶点的值大于左右两边的子节点
+ * 实质：完全二叉树。
+ * 增加和移除顶部的时间负责度都是log(n)级别的
  * 完全儿二叉树：顶点的大于下边的
+ * 父亲：parent(i)=i/2
+ * 左右孩子，left  child(i)=2*2;
+ *           right child(i)=2*i+1。
+ *
  *<p/>作者：wu
  *<br/>创建时间：2019/7/22 18:31
  */
@@ -89,13 +95,22 @@ class MaxHeap<E : Comparable<E>>(capacity: Int = 10) {
 
     }
 
+    /**
+     * 获取父类
+     */
     private fun parent(index: Int): Int {
         if (index == 0) throw IllegalArgumentException("大兄弟，0是没有父节点的啊")
         return (index.minus(1)).div(2)
     }
 
+    /**
+     * 获取左孩子
+     */
     private fun leftChild(index: Int) = index.times(2) + 1
 
+    /**
+     * 获取右孩子
+     */
     private fun rightChild(index: Int) = index.times(2) + 2
 }
 

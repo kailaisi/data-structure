@@ -1,10 +1,10 @@
 package test
 
-import tree.AVLMap
-import tree.BSTMap
-import interf.Map
-import link.LinkedListMap
-import tree.RBTree
+import datalearning.tree.AVLMap
+import datalearning.tree.BSTMap
+import datalearning.interf.Map
+import datalearning.link.LinkedListMap
+import datalearning.tree.RBTree
 import java.util.*
 
 /**
@@ -13,7 +13,7 @@ import java.util.*
  *<br/>创建时间：2019/7/26 17:54
  */
 object MapMain{
-    fun testMap(map: Map<String,Int>,filename:String): Double {
+    fun testMap(map: Map<String, Int>, filename:String): Double {
         val list = Utils.readFile(filename)
         Collections.sort(list)
         var start = System.nanoTime()

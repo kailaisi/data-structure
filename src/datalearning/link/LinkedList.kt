@@ -1,4 +1,4 @@
-package link
+package datalearning.link
 
 /**
  *描述：时间复杂度分析：

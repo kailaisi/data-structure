@@ -1,4 +1,4 @@
-package array;
+package datalearning.array;
 
 /**
  * 描述：

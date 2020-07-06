@@ -1,6 +1,6 @@
-package tree
+package datalearning.tree
 
-import interf.Set
+import datalearning.interf.Set
 import kotlin.random.Random
 
 /**

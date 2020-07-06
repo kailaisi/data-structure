@@ -1,6 +1,6 @@
-package tree
+package datalearning.tree
 
-import interf.Map
+import datalearning.interf.Map
 
 /**
  *描述：基于平衡树实现的Map接口

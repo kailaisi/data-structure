@@ -1,8 +1,8 @@
 package test;
 
-import array.ArrayStack;
-import interf.Stack;
-import link.LinkedListStack;
+import datalearning.array.ArrayStack;
+import datalearning.interf.Stack;
+import datalearning.link.LinkedListStack;
 
 import java.util.Random;
 

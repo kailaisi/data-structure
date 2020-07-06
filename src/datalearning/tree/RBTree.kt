@@ -1,7 +1,7 @@
-package tree
+package datalearning.tree
 
 import Utils
-import interf.Map
+import datalearning.interf.Map
 
 /**
  *描述：红黑树，绝对平衡的二分搜索树。主要是进行了旋转操作。相对于AVL添加，删除更有优势，查询的话（可能会是2Log(n)）,相对于AVL树有稍微一点点差距

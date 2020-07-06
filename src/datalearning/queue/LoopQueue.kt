@@ -1,6 +1,6 @@
-package queue
+package datalearning.queue
 
-import interf.Queue
+import datalearning.interf.Queue
 import kotlin.Array
 /**
  *描述：
@@ -61,7 +61,7 @@ class LoopQueue<E>(capacity: Int = 10) : Queue<E> {
 
     override fun toString(): String {
         val builder = StringBuilder()
-        builder.append("queue.LoopQueue: front[")
+        builder.append("datalearning.queue.LoopQueue: front[")
         for (i in 0 until size) {
             builder.append(data[(i+front)%data.size])
         }

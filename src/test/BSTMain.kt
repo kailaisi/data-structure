@@ -1,10 +1,9 @@
 package test
 
 import Utils
-import tree.AVLTree
-import tree.BSTMap
-import tree.RBTree
-import java.util.*
+import datalearning.tree.AVLTree
+import datalearning.tree.BSTMap
+import datalearning.tree.RBTree
 
 /**
  *描述：

@@ -1,6 +1,6 @@
-package queue
+package datalearning.queue
 
-import interf.Queue
+import datalearning.interf.Queue
 
 /**
  *描述：

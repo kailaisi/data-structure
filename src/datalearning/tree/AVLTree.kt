@@ -1,7 +1,7 @@
-package tree
+package datalearning.tree
 
 import Utils
-import interf.Map
+import datalearning.interf.Map
 import java.lang.RuntimeException
 import kotlin.math.abs
 import kotlin.math.max
