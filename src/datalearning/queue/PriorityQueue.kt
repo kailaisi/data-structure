@@ -1,7 +1,7 @@
 package datalearning.queue
 
 import datalearning.interf.Queue
-import maxheap.MaxHeap
+import datalearning.tree.MaxHeap
 
 /**
  *描述：基于堆的优先级队列

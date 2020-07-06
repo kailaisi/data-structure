@@ -1,9 +1,8 @@
 package test;
 
-import maxheap.MaxHeap;
+import datalearning.tree.MaxHeap;
 
 import java.util.Random;
-import java.util.concurrent.TransferQueue;
 
 /**
  * 描述：

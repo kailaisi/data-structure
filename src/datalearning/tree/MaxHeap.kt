@@ -1,4 +1,4 @@
-package maxheap
+package datalearning.tree
 
 import datalearning.array.Array
 import kotlin.random.Random
@@ -6,14 +6,8 @@ import kotlin.random.Random
 
 /**
  *描述：基于数组的最大堆。顶点的值大于左右两边的子节点
- * 实质：完全二叉树。
- * 增加和移除顶部的时间负责度都是log(n)级别的
- * 完全儿二叉树：顶点的大于下边的
- * 父亲：parent(i)=i/2
- * 左右孩子，left  child(i)=2*2;
- *           right child(i)=2*i+1。
- *
- *<p/>作者：wu
+ * 实质：完全二叉树。增加和移除顶部的时间负责度都是log(n)级别的
+ *<p/>作者：kailaisi
  *<br/>创建时间：2019/7/22 18:31
  */
 class MaxHeap<E : Comparable<E>>(capacity: Int = 10) {
@@ -36,7 +30,9 @@ class MaxHeap<E : Comparable<E>>(capacity: Int = 10) {
     fun isEmpty() = data.isEmpty
 
     fun add(e: E) {
+        //先将数据添加到最后
         data.add(e)
+        //通过不断的上浮，将节点放到合适的位置。
         siftUp(data.size - 1)
     }
 
