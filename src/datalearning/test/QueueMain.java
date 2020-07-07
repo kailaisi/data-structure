@@ -1,4 +1,4 @@
-package test;
+package datalearning.test;
 
 import datalearning.interf.Queue;
 import datalearning.queue.ArrayQueue;

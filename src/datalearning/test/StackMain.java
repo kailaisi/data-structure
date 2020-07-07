@@ -1,4 +1,4 @@
-package test;
+package datalearning.test;
 
 import datalearning.array.ArrayStack;
 import datalearning.interf.Stack;

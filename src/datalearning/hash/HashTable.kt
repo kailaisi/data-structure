@@ -1,6 +1,6 @@
 package datalearning.hash
 
-import Utils
+import datalearning.test.Utils
 import java.util.*
 
 /**

@@ -1,4 +1,4 @@
-package test
+package datalearning.test
 
 import datalearning.tree.AVLMap
 import datalearning.tree.BSTMap
@@ -41,8 +41,8 @@ fun main() {
     println(MapMain.testMap(avlMap, filename))
 
     var listMap = LinkedListMap<String, Int>()
-    println(MapMain.testMap(listMap,filename))
+    println(MapMain.testMap(listMap, filename))
 
     var rbTree = RBTree<String, Int>()
-    println(MapMain.testMap(rbTree,filename))
+    println(MapMain.testMap(rbTree, filename))
 }

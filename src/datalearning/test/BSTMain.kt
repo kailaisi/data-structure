@@ -1,6 +1,5 @@
-package test
+package datalearning.test
 
-import Utils
 import datalearning.tree.AVLTree
 import datalearning.tree.BSTMap
 import datalearning.tree.RBTree

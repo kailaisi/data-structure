@@ -1,6 +1,5 @@
-package test
+package datalearning.test
 
-import Utils
 import datalearning.interf.Set
 import datalearning.link.LinkedListSet
 import datalearning.tree.AVLSet

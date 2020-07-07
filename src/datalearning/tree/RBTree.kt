@@ -1,6 +1,6 @@
 package datalearning.tree
 
-import Utils
+import datalearning.test.Utils
 import datalearning.interf.Map
 
 /**
