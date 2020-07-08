@@ -29,13 +29,13 @@ import java.util.TreeMap;
  * 当搜索的时候，通过递归的方式去匹配。
  * 如果遇到了*，那么就匹配所有的下一个节点信息
  */
-class WordDictionary {
+class LeetCode211 {
     private Node root;
 
     /**
      * Initialize your data structure here.
      */
-    public WordDictionary() {
+    public LeetCode211() {
         root = new Node();
     }
 
