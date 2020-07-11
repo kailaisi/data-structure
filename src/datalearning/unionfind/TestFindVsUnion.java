@@ -10,17 +10,19 @@ import java.util.Random;
 class TestFindVsUnion {
     public static void main(String[] args) {
         int size=100000;
-        int m=100000;
+        int m=10000000;
         QuickFind find = new QuickFind(size);
         QuickUnion union = new QuickUnion(size);
         QuickUnion2 quickUnion2 = new QuickUnion2(size);
         QuickUnion3 quickUnion3 = new QuickUnion3(size);
         QuickUnion4 quickUnion4 = new QuickUnion4(size);
+        QuickUnion5 quickUnion5 = new QuickUnion5(size);
        // System.out.println("QuickFind :"+testUF(find,m)+"s");
       //  System.out.println("QuickUnion :"+testUF(union,m)+"s");
-        System.out.println("QuickUnion2 :"+testUF(quickUnion2,m)+"s");
+       // System.out.println("QuickUnion2 :"+testUF(quickUnion2,m)+"s");
         System.out.println("QuickUnion3 :"+testUF(quickUnion3,m)+"s");
         System.out.println("QuickUnion4 :"+testUF(quickUnion4,m)+"s");
+        System.out.println("QuickUnion4 :"+testUF(quickUnion5,m)+"s");
     }
 
 
