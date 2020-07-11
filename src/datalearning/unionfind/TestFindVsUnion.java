@@ -15,10 +15,12 @@ class TestFindVsUnion {
         QuickUnion union = new QuickUnion(size);
         QuickUnion2 quickUnion2 = new QuickUnion2(size);
         QuickUnion3 quickUnion3 = new QuickUnion3(size);
+        QuickUnion4 quickUnion4 = new QuickUnion4(size);
        // System.out.println("QuickFind :"+testUF(find,m)+"s");
-        System.out.println("QuickUnion :"+testUF(union,m)+"s");
+      //  System.out.println("QuickUnion :"+testUF(union,m)+"s");
         System.out.println("QuickUnion2 :"+testUF(quickUnion2,m)+"s");
         System.out.println("QuickUnion3 :"+testUF(quickUnion3,m)+"s");
+        System.out.println("QuickUnion4 :"+testUF(quickUnion4,m)+"s");
     }
 
 
