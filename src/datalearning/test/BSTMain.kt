@@ -1,8 +1,8 @@
 package datalearning.test
 
-import datalearning.tree.AVLTree
+import datalearning.avl.AVLTree
 import datalearning.tree.BSTMap
-import datalearning.tree.RBTree
+import datalearning.rb.RBTree
 
 /**
  *描述：

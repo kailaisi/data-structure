@@ -1,5 +1,6 @@
 package datalearning.tree
 
+import datalearning.avl.AVLTree
 import datalearning.interf.Map
 
 /**

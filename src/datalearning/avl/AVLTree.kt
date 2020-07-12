@@ -1,4 +1,4 @@
-package datalearning.tree
+package datalearning.avl
 
 import datalearning.test.Utils
 import datalearning.interf.Map
@@ -104,6 +104,7 @@ class AVLTree<K : Comparable<K>, V> : Map<K, V> {
     fun isBST(): Boolean {
         var list = ArrayList<K>()
         inOrder(root, list)
+        //中序遍历结果，数组是升序的
         for (i in 1 until list.size) {
             if (list[i - 1] > list[i]) {
                 return false
@@ -128,6 +129,9 @@ class AVLTree<K : Comparable<K>, V> : Map<K, V> {
         return isBalanced(node.left) && isBalanced(node.right)
     }
 
+    /**
+     * 进行中序遍历
+     */
     private fun inOrder(node: Node?, list: ArrayList<K>) {
         if (node == null) {
             return

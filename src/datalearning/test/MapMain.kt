@@ -4,7 +4,7 @@ import datalearning.tree.AVLMap
 import datalearning.tree.BSTMap
 import datalearning.interf.Map
 import datalearning.link.LinkedListMap
-import datalearning.tree.RBTree
+import datalearning.rb.RBTree
 import java.util.*
 
 /**

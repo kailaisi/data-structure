@@ -1,5 +1,7 @@
 package datalearning.tree
 
+import datalearning.avl.AVLTree
+import datalearning.rb.RBTree
 import kotlin.random.Random
 
 /**

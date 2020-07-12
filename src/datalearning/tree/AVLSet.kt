@@ -1,4 +1,5 @@
 package datalearning.tree
+import datalearning.avl.AVLTree
 import datalearning.interf.Set
 
 /**

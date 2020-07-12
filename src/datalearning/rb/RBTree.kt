@@ -1,4 +1,4 @@
-package datalearning.tree
+package datalearning.rb
 
 import datalearning.test.Utils
 import datalearning.interf.Map
