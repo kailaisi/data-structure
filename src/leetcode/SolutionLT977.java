@@ -20,42 +20,38 @@ package leetcode;
  * 1 <= A.length <= 10000
  * -10000 <= A[i] <= 10000
  * A 已按非递减顺序排序。
+ * 双指针，找到中间0点，然后向两边遍历
  */
 class SolutionLT977 {
-    //todo 未完成
     public int[] sortedSquares(int[] A) {
         int start = 0, end = 0;
         int length = A.length;
-        for (int i = 0; i < length; i++) {
-            if (A[i] < 0) {
-                start++;
-                end++;
-            } else {
-                end++;
-                break;
-            }
+        while (end < length && A[end] < 0) {
+            end++;
         }
-        if (end >= length) {//保证不会越界
-            end = length - 1;
-        }
-        int[] ints = new int[length];
-        int index=0;
-        while (start != 0 && end != length-1) {
-            if(Math.abs(A[start])>Math.abs(A[end])){
-                ints[index]=(int) Math.sqrt(A[start]);
+        start = end - 1;
+        int[] result = new int[length];
+        int index = 0;
+        while (start >= 0 && end < length) {
+            if (A[start] * A[start] < A[end] * A[end]) {
+                result[index] = A[start] * A[start];
                 start--;
+            } else {
+                result[index] = A[end] * A[end];
+                end++;
             }
             index++;
         }
-    }
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
+        while (start >= 0) {
+            result[index] = A[start] * A[start];
+            start--;
+            index++;
         }
+        while (end < length) {
+            result[index] = A[end] * A[end];
+            end++;
+            index++;
+        }
+        return result;
     }
 }
