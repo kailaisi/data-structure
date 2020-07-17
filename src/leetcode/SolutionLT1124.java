@@ -19,18 +19,11 @@ class SolutionLT1124 {
     }
 
     public int longestWPI(int[] hours) {
-        int max = 0;
-        int count = 0;
+        int[] arr=new int[hours.length+1];
+        arr[0]=0;
         for (int i = 0; i < hours.length; i++) {
-            if (hours[i] > 8) {
-                count++;
-            } else {
-                count--;
-            }
-            if (count > 0) {
-                max = i+1;
-            }
+            arr[i+1]=arr[i]+hours[i]>8?1:-1;
         }
-        return max;
+        return 0;
     }
 }
