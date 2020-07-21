@@ -17,9 +17,10 @@ import java.util.ArrayList;
  * text 由一些用空格分隔的单词组成，每个单词都由小写英文字母组成
  * 1 <= first.length, second.length <= 10
  * first 和 second 由小写英文字母组成
+ *
+ * 解题思路：分词，然后一个个匹配
  */
 class SolutionLT1078 {
-    // TODO: 2020/7/20 待验证
     public static void main(String[] args) {
         SolutionLT1078 lt1078 = new SolutionLT1078();
         String text = "alice is a good girl she is a good student";
@@ -32,14 +33,11 @@ class SolutionLT1078 {
     }
 
     public String[] findOcurrences(String text, String first, String second) {
+        String[] s = text.split(" ");
         ArrayList<String> list = new ArrayList<>();
-        String regex = first + " " + second;
-        String[] split = text.split(regex);
-        for (String str : split) {
-            list.add(str.replace(regex, ""));
-            String[] s = str.split(" ");
-            if (s.length > 0) {
-                list.add(s[0]);
+        for(int i=0;i<s.length-2;i++){
+            if(s[i].equals(first) && s[i + 1].equals(second)){
+                list.add(s[i+2]);
             }
         }
         String[] strings = new String[list.size()];
