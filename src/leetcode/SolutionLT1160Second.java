@@ -26,8 +26,8 @@ import java.util.HashMap;
 class SolutionLT1160Second {
     //todo 未完成
     public static void main(String[] args) {
-        String[] words=new String[]{"cat","bt","hat","tree"};
-        String chars="atach";
+        String[] words=new String[]{"hello","world","leetcode"};
+        String chars="welldonehoneyr";
         int i = new SolutionLT1160Second().countCharacters(words, chars);
         System.out.println(i);
     }
@@ -41,7 +41,7 @@ class SolutionLT1160Second {
         }
         int len=0;
         a:for (String str : words) {
-            if(str.length()<chars.length()){
+            if(str.length()>chars.length()){
                 continue;
             }
             int[] w = new int[26];
