@@ -12,10 +12,10 @@ import java.util.LinkedList;
  * 输出：0
  * 解题思路：直接找最小值即可
  */
-class SolutionLT11 {
+class SolutionLT1557 {
     LinkedList<int[]> list = new LinkedList<>();
 
-    public SolutionLT11() {
+    public SolutionLT1557() {
 
     }
 
