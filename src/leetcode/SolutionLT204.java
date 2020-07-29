@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.Arrays;
+
 /**
  * 统计所有小于非负整数 n 的质数的数量。
  * <p>
@@ -12,22 +14,37 @@ package leetcode;
 class SolutionLT204 {
     //todo
     public static void main(String[] args) {
-
+        int primes = new SolutionLT204().countPrimes(10);
+        System.out.println(primes);
     }
 
     public int countPrimes(int n) {
-        int count=0
-        for(int i=1;i<n;i+=2){
+        boolean[] booleans = new boolean[n];
+        Arrays.fill(booleans, true);
+        for(int i=2;i*i<n;i++){
+            if(isPrimes(i)){
+                for(int j=i*i;j<n;j+=i){
+                    booleans[j]=false;
+                }
+            }
 
+        }
+        int count=0;
+        for(int i=2;i<n;i+=1){
+            if(booleans[i]){
+                System.out.println(i);
+                count++;
+            }
         }
         return count;
     }
 
     private boolean isPrimes(int n){
-        for(int i=2;i<n/2;i++){
+        for(int i=2;i*i<=n;i++){
             if(n%i==0){
-                ret
+                return  false;
             }
         }
+        return true;
     }
 }
