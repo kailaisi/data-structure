@@ -39,9 +39,17 @@ import java.util.Set;
  * <p>
  * 1 <= deck.length <= 10000
  * 0 <= deck[i] < 10000
+ * 解题思路：最大公约数
+ * 这里如果能够进行分组，肯定对应的数量是有公约数的。
+ * 首先根据value值进行一次分组。然后看对应的数量能否组成一个最大公约数>1的数据
+ *
+ *  最大公约数有多种算法。可以自行百度查找。
  */
 class SolutionLT914 {
     public static void main(String[] args) {
+        int[] ints = {1,1,1,2,2,2,3,3};
+        boolean b = new SolutionLT914().hasGroupsSizeX(ints);
+        System.out.println(b);
     }
 
     public boolean hasGroupsSizeX(int[] deck) {
@@ -51,10 +59,25 @@ class SolutionLT914 {
             map.put(key,map.getOrDefault(key,0)+1);
         }
         Set<Integer> set = map.keySet();
-        //todo 需要遍历
-        for (Integer integer : set) {
-            Integer integer1 = map.get(set);
+        int gcd=map.get(deck[0]);
+        //这里遍历，获取最大公约数
+        for (Integer key : set) {
+            if(map.get(key)==1){
+                return false;
+            }
+            //这里获取一个最大公约数
+            gcd=getGcd(gcd,map.get(key));
+            if(gcd==1){
+                return false;
+            }
         }
-        return false;
+        return true;
+    }
+
+    private int getGcd(int a, Integer b) {
+        if(a%b==0){
+            return b;
+        }
+        return getGcd(b,a%b);
     }
 }
