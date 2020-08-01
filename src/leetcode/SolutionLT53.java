@@ -14,22 +14,26 @@ package leetcode;
 class SolutionLT53 {
     public static void main(String[] args) {
         SolutionLT53 lt53 = new SolutionLT53();
-        int[] ints = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        int[] ints = {1,2};
         System.out.println(lt53.maxSubArray(ints));
     }
 
     public int maxSubArray(int[] nums) {
         int result;
         int length = nums.length;
+        if(length<1){
+            return 0;
+        }
         result = nums[0];
         //保存到i为止的最大子序的和
         int[] ints = new int[length];
+        ints[0]=nums[0];
         for (int i = 1; i < length; i++) {
             //获取以i结尾的最大子序的和。如果int[i-1]<0的话，这步能够将之前的<0的子序列重新计算和。因为它+i<i。
             ints[i] = Math.max(ints[i - 1] + nums[i], nums[i]);
             //i和之前的result取最大值
             result = Math.max(result, ints[i]);
         }
-        return 0;
+        return result;
     }
 }
