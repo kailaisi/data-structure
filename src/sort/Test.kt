@@ -11,7 +11,10 @@ fun main() {
   //  sort.sort(ints)
     println("冒泡排序："+ints.contentToString())
     sort=BubbleSortSecond()
-
+    sort.sort(ints)
+    println("冒泡排序优化："+ints.contentToString())
+    ints= intArrayOf(2,1,3,4,5,6,7,8)
+    sort=BubbleSortThird()
     sort.sort(ints)
     println("冒泡排序优化："+ints.contentToString())
 }

@@ -11,20 +11,27 @@ package sort
 class BubbleSortThird : Sort {
     override fun sort(array: IntArray) {
         var size = array.size
+        var lastExchangeIndex=0//记录最后一个变更的位置
+        var sortBorder=size-1//是无序数列的边界位置，每一轮排序以后，sortborder位置之后的不再进行排序处理
         for (i in 0 until size-1) {
             var isSorted=true
-            for (j in 0 until size - i-1) {
+            for (j in 0 until sortBorder) {
                 if (array[j] > array[j + 1]) {
                     isSorted=false
                     val tmp = array[j]
                     array[j] = array[j + 1]
                     array[j + 1] = tmp
+                    lastExchangeIndex=j
                 }
             }
+            sortBorder=lastExchangeIndex//将循环的次数修改为便跟的位置。
             if(isSorted){
                 println("当前第${i}层循环，跳出了")
                 break
             }
         }
     }
+}
+fun main(){
+
 }
