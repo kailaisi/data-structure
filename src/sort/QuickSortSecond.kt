@@ -1,12 +1,12 @@
 package sort
 
 /**
- *描述：快速排序的双边循环法
+ *描述：快速排序的单边循环法
  *<p/>作者：kailaisi
  *<br/>创建时间：2020/8/6 8:55
- * 双边排序法：左右两边同时进行比较。然后交换
+ * 从左边开始一个个比较
  */
-class QuickSort : Sort {
+class QuickSortSecond : Sort {
     override fun sort(intArray: IntArray) {
         qucikSort(intArray, 0, intArray.size - 1)
     }
@@ -32,36 +32,30 @@ class QuickSort : Sort {
     private fun partition(intArray: IntArray, startIndex: Int, endIndex: Int): Int {
         //取第一个位置的数据当做基准点
         var pivot = intArray[startIndex]
+        //mark相当于标记了比基准点数据小的边界位置。
+        var mark = startIndex
         var left = startIndex
-        var right = endIndex
-        while (left < right) {
-            //从右到左，找到比基准点小的那个数字
-            while (left < right && intArray[right] >= pivot) {
-                right--
+        while (left <= endIndex) {
+            if (intArray[left] < pivot) {
+                //发现了比基准点小的数据，那么就mark++，然后将mark位置的数据和left节点数据进行交换
+                mark++
+                val tmp = intArray[mark]
+                intArray[mark] = intArray[left]
+                intArray[left] = tmp
             }
-            //从左到右，找到比基准点大的那个数字
-            while (left < right && intArray[left] <= pivot) {
-                left++
-            }
-            //左右交换
-            if (left < right) {
-                var tmp = intArray[left]
-                intArray[left] = intArray[right]
-                intArray[right] = tmp
-            }
+            left++
         }
-        //pivot和重合的指针位置进行交换
-        intArray[startIndex] = intArray[left]
-        intArray[left] = pivot
-        //返回基准点的位置
-        return left
+        //将基准点的位置和mark位置进行交换
+        intArray[startIndex] = intArray[mark]
+        intArray[mark] = pivot
+        return mark
     }
 }
 
 
 fun main() {
-    val bubb = QuickSort()
-    var array = intArrayOf(5, 8, 6, 3, 9, 2, 1, 7, 14, 15, 16, 77, 18)
+    val bubb = QuickSortSecond()
+    var array = intArrayOf(5, 8, 6, 5, 5, 6, 6, 9, 6, 9, 9, 14, 3, 9, 2, 1, 7, 14, 15, 16, 77, 18)
     bubb.sort(array)
-    print("快速排序算法：${array.contentToString()}")
+    print("快速排序单边算法：${array.contentToString()}")
 }
