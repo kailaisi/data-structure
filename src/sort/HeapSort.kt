@@ -4,6 +4,8 @@ package sort
  *描述：堆排序，基于堆的实现
  *<p/>作者：kailaisi
  *<br/>创建时间：2020/8/7 8:40
+ * 说明：堆排序是利用二叉堆的特性来进行处理
+ * 先通过构建最大堆，然后通过将顶点的位置放到末尾，然后调整二叉堆，将次一个大的节点放到堆顶。循环往复，从而调整数据
  */
 class HeapSort : Sort {
     override fun sort(array: IntArray) {
