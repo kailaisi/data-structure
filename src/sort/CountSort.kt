@@ -10,8 +10,10 @@ package sort
  */
 class CountSort : Sort {
     override fun sort(intArray: IntArray) {
+        //得到数组的最大值最小值
         var max=intArray.max()!!
         var min=intArray.min()!!
+        //创建数组来存放最大最小值范围之内的数据
         var ints = IntArray(max - min + 1)
         intArray.forEach {
             ints[it-min]++
