@@ -25,17 +25,18 @@ package leetcode;
  * 1 <= arr[i] <= 10^4
  * 1 <= k <= arr.length
  * 0 <= threshold <= 10^4
+ * 解题思路：滑动窗口，先计算出头k个数据的和。
+ * 然后窗口往右滑动，进行和的计算处理。从而找到符合条件的数据
  */
 class SolutionL1343 {
     public static void main(String[] args) {
-        //todo 测试代码有问题
         SolutionL1343 lt1078 = new SolutionL1343();
         int[] ints = {2852,5203,9375,3209,932,9529,4416,3525,2435,3131,3232,2047,2871,3550,5923,4553,2086,5990,4580,2948,8522,4850,3597,744,6963,8126,2153,258,1955,3169,3165,4334,791,5342,4348,5404,8531,1045,7767,9842};
         System.out.println(lt1078.numOfSubarrays(ints, 17, 65));
     }
 
     public int numOfSubarrays(int[] arr, int k, int threshold) {
-        if (arr.length < threshold) {
+        if (arr.length < k) {
             return 0;
         }
         int big = k * threshold;
