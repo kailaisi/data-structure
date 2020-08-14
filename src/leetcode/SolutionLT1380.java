@@ -2,7 +2,6 @@ package leetcode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
 
 /**
  * 给你一个 m * n 的矩阵，矩阵中的数字 各不相同 。请你按 任意 顺序返回矩阵中的所有幸运数。
@@ -31,10 +30,10 @@ import java.util.TreeSet;
  * 找到每行的最小值，每列的最大值。
  * 然后遍历，看ij位置的值，是否同时和i行的最小值以及j列的最大值相等。
  */
-public class Solution1380 {
+public class SolutionLT1380 {
     public static void main(String[] args) {
         int[][] ints = {{3, 7, 8}, {9, 11, 13}, {15, 16, 17}};
-        List<Integer> list = new Solution1380().luckyNumbers(ints);
+        List<Integer> list = new SolutionLT1380().luckyNumbers(ints);
         System.out.println(list);
     }
     public List<Integer> luckyNumbers (int[][] matrix) {

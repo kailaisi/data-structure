@@ -1,7 +1,6 @@
 package leetcode;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * 学校在拍年度纪念照时，一般要求学生按照 非递减 的高度顺序排列。
@@ -27,9 +26,9 @@ import java.util.Collections;
  * 1 <= heights[i] <= 100
  * 解题思路：进行排序，然后比较位置是否相同
  */
-class SolutionL1051 {
+class SolutionLT1051 {
     public static void main(String[] args) {
-        SolutionL1051 lt1078 = new SolutionL1051();
+        SolutionLT1051 lt1078 = new SolutionLT1051();
         System.out.println(lt1078.heightChecker(new int[]{5,1,2,3,4}));
     }
 

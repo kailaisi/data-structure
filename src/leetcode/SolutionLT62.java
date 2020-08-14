@@ -23,9 +23,9 @@ package leetcode;
  * 对于f(m,n),是由f(m-1,n) 和f(m,n-1)两个函数之和
  * 如果其中一个为1了，那么就只有一种选择，
  */
-class SolutionL62 {
+class SolutionLT62 {
     public static void main(String[] args) {
-        SolutionL62 lt1078 = new SolutionL62();
+        SolutionLT62 lt1078 = new SolutionLT62();
         System.out.println(lt1078.uniquePaths(100,100));
     }
 

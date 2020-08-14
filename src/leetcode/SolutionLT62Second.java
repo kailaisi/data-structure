@@ -24,9 +24,9 @@ package leetcode;
  * 这里会先从[1,1]位置开始，然后逐个迭代开始计算比[m,n]小的所有数据。
  * 时间复杂度为O(m*n)
  */
-class SolutionL62Second {
+class SolutionLT62Second {
     public static void main(String[] args) {
-        SolutionL62Second lt1078 = new SolutionL62Second();
+        SolutionLT62Second lt1078 = new SolutionLT62Second();
         System.out.println(lt1078.uniquePaths(100, 50));
     }
 

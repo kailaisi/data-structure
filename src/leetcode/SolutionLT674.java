@@ -14,10 +14,10 @@ package leetcode;
  * 注意：数组长度不会超过10000。
  * <p>
  */
-public class Solution674 {
+public class SolutionLT674 {
     public static void main(String[] args) {
         int[] ints = {1,3,5,7};
-        System.out.println(new Solution674().findLengthOfLCIS(ints));
+        System.out.println(new SolutionLT674().findLengthOfLCIS(ints));
     }
 
     public int findLengthOfLCIS(int[] nums) {

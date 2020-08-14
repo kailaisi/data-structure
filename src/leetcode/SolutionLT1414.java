@@ -28,9 +28,9 @@ import java.util.List;
  * <p>
  * 解题思路：倒叙，找到比k小的那个最大值，然后-掉，继续，直到k=0为止
  */
-class SolutionL1414 {
+class SolutionLT1414 {
     public static void main(String[] args) {
-        SolutionL1414 lt1078 = new SolutionL1414();
+        SolutionLT1414 lt1078 = new SolutionLT1414();
         System.out.println(lt1078.findMinFibonacciNumbers(5));
     }
 

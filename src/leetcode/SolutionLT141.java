@@ -7,7 +7,7 @@ import java.util.TreeSet;
  * <p/>作者：wu
  * <br/>创建时间：2019/7/22 15:59
  */
-public class Solution141 {
+public class SolutionLT141 {
     class ListNode {
         int val;
         ListNode next;

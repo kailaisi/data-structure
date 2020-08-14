@@ -1,7 +1,5 @@
 package leetcode;
 
-import java.util.Arrays;
-
 /**
  * 学校在拍年度纪念照时，一般要求学生按照 非递减 的高度顺序排列。
  * 请你返回能让所有学生以 非递减 高度排列的最小必要移动人数。
@@ -27,9 +25,9 @@ import java.util.Arrays;
  * 解题思路：其实我们关心的只是排名，只要排名一致，那么就不需要变换位置。而数字的大小和范围已经固定是100以内，所以可以使用
  * 统计算法
  */
-class SolutionL1051Second {
+class SolutionLT1051Second {
     public static void main(String[] args) {
-        SolutionL1051Second lt1078 = new SolutionL1051Second();
+        SolutionLT1051Second lt1078 = new SolutionLT1051Second();
         System.out.println(lt1078.heightChecker(new int[]{1,1,4,2,1,3}));
     }
 

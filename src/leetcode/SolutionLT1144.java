@@ -20,9 +20,9 @@ package leetcode;
  * 逐个比较，偶数都降低到跟两边的数据都小，然后计算降低的总和。
  * 奇数也如此，最后计算最小值
  */
-class SolutionL1144 {
+class SolutionLT1144 {
     public static void main(String[] args) {
-        SolutionL1144 lt1078 = new SolutionL1144();
+        SolutionLT1144 lt1078 = new SolutionLT1144();
         int[] ints = {1,2,3};
         System.out.println(lt1078.movesToMakeZigzag(ints));
     }
