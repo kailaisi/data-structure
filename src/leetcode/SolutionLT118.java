@@ -16,14 +16,15 @@ import java.util.List;
  * [1,3,3,1],
  * [1,4,6,4,1]
  * ]
- * 通过次数97,691提交次数145,612
  * 数组
- * 解题思路：暴力破解。
+ * 解题思路：
  */
 public class SolutionLT118 {
     public static void main(String[] args) {
-        List<List<Integer>> list = new SolutionLT118().generate(5);
-        System.out.println(list);
+        List<List<Integer>> list = new SolutionLT118().generate(0);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
     }
 
     public List<List<Integer>> generate(int numRows) {
@@ -33,7 +34,7 @@ public class SolutionLT118 {
             //先放个1
             inner.add(1);
             if(list.size()>0){
-                //如果已经有队列了，俺么这里可以按照上一个队列来计算和
+                //如果已经有队列了，那么这里可以按照上一个队列来计算和
                 List<Integer> integers = list.get(i-1);
                 for (int j = 1; j < i; j++) {
                     inner.add(integers.get(j)+integers.get(j-1));
