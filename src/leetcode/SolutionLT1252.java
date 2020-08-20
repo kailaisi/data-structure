@@ -1,50 +1,69 @@
 package leetcode;
 
 /**
- * 给你两个整数，n 和 start 。
- * 数组 nums 定义为：nums[i] = start + 2*i（下标从 0 开始）且 n == nums.length 。
- * 请返回 nums 中所有元素按位异或（XOR）后得到的结果。
+ * 给你一个 n 行 m 列的矩阵，最开始的时候，每个单元格中的值都是 0。
+ *
+ * 另有一个索引数组 indices，indices[i] = [ri, ci] 中的 ri 和 ci 分别表示指定的行和列（从 0 开始编号）。
+ *
+ * 你需要将每对 [ri, ci] 指定的行和列上的所有单元格的值加 1。
+ *
+ * 请你在执行完所有 indices 指定的增量操作后，返回矩阵中 「奇数值单元格」 的数目。
+ *
+ *  
+ *
  * 示例 1：
- * 输入：n = 5, start = 0
- * 输出：8
- * 解释：数组 nums 为 [0, 2, 4, 6, 8]，其中 (0 ^ 2 ^ 4 ^ 6 ^ 8) = 8 。
- * "^" 为按位异或 XOR 运算符。
+ *
+ *
+ *
+ * 输入：n = 2, m = 3, indices = [[0,1],[1,1]]
+ * 输出：6
+ * 解释：最开始的矩阵是 [[0,0,0],[0,0,0]]。
+ * 第一次增量操作后得到 [[1,2,1],[0,1,0]]。
+ * 最后的矩阵是 [[1,3,1],[1,3,1]]，里面有 6 个奇数。
  * 示例 2：
- * 输入：n = 4, start = 3
- * 输出：8
- * 解释：数组 nums 为 [3, 5, 7, 9]，其中 (3 ^ 5 ^ 7 ^ 9) = 8.
- * 示例 3：
- * 输入：n = 1, start = 7
- * 输出：7
- * 示例 4：
- * <p>
- * 输入：n = 10, start = 5
- * 输出：2
+ *
+ *
+ *
+ * 输入：n = 2, m = 2, indices = [[1,1],[0,0]]
+ * 输出：0
+ * 解释：最后的矩阵是 [[2,2],[2,2]]，里面没有奇数。
+ *  
+ *
  * 提示：
- * 1 <= n <= 1000
- * 0 <= start <= 1000
- * n == nums.length
+ *
+ * 1 <= n <= 50
+ * 1 <= m <= 50
+ * 1 <= indices.length <= 100
+ * 0 <= indices[i][0] < n
+ * 0 <= indices[i][1] < m
  */
 class SolutionLT1252 {
 
     public static void main(String[] args) {
         SolutionLT1252 lt = new SolutionLT1252();
-        int[][] ints = {{0, 1}, {1, 1}};
-        System.out.println(lt.oddCells(10, 5,ints));
+        int[][] ints = {{1, 1}, {0,0}};
+        System.out.println(lt.oddCells(2 ,2, ints));
     }
 
     public int oddCells(int n, int m, int[][] indices) {
-        // TODO: 2020/8/18 未完，有错误
         int[][] ints = new int[n][m];
         int count = 0;
         for (int[] index : indices) {
-            int i = ints[index[0]][index[1]];
-            if (i % 2 == 0) {
-                count++;
-            } else {
-                count--;
+            int line = index[0];
+            for (int i = 0; i < m; i++) {
+                ints[line][i]++;
             }
-            ints[index[0]][index[1]]++;
+            int width = index[1];
+            for (int i = 0; i < n; i++) {
+                ints[i][width]++;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (ints[i][j] % 2 == 1) {
+                    count++;
+                }
+            }
         }
         return count;
     }
