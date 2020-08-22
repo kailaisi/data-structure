@@ -24,6 +24,7 @@ class SolutionLT1124 {
         for (int i = 0; i < hours.length; i++) {
             arr[i+1]=arr[i]+hours[i]>8?1:-1;
         }
+        //然后计算连续都为正的
         return 0;
     }
 }

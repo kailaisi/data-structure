@@ -20,16 +20,19 @@ package leetcode;
  */
 class SolutionLT70 {
     public static void main(String[] args) {
-        // TODO: 2020/8/1 未完成
-        System.out.println(new SolutionLT70().climbStairs(45));
+        System.out.println(new SolutionLT70().climbStairs(5));
     }
+
     public int climbStairs(int n) {
-        if(n==2){
-            return 2;
+        int[] ints = new int[n + 1];
+        if (n <= 2) {
+            return n;
         }
-        if(n==1){
-            return 1;
+        ints[1] = 1;
+        ints[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            ints[i] = ints[i - 1] + ints[i - 2];
         }
-        return climbStairs(n-1)+climbStairs(n-2);
+        return ints[n];
     }
 }
