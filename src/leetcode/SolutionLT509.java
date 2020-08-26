@@ -45,6 +45,9 @@ class SolutionLT509 {
     }
 
     public int fib(int N) {
+        if(N<1){
+            return 0;
+        }
         int[] ints = new int[N+1];
         ints[0]=0;
         ints[1]=1;
