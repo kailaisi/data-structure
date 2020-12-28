@@ -33,5 +33,6 @@ class SolutionLT28Third {
     }
     public int strStr(String haystack, String needle) {
         //todo kmp算法
+        return 0;
     }
 }
