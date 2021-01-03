@@ -40,6 +40,7 @@ class SolutionLT441Third {
         System.out.println(lt.arrangeCoins(0));
         System.out.println(lt.arrangeCoins(1));
         System.out.println(lt.arrangeCoins(200));
+        System.out.println(lt.arrangeCoins(1804289383));
     }
 
     public int arrangeCoins(int n) {
