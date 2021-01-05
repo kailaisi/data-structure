@@ -47,12 +47,11 @@ package leetcode;
  * letters 仅由小写字母组成，最少包含两个不同的字母。
  * 目标字母target 是一个小写字母。
  *
- * 题解：因为题目说的是有序的。所以可以考虑按照二分查找法。而且找到的是>某字母的。这里可以判定条件是<=mid，就可以变换条件。
- * 另一个，存在着首尾位置的特殊处理。如果第一个字母都比目标大，则直接返回第一个。如果最后一个比目标的还小，也返回第一个。
+ * 题解：暴力法，直接遍历，从第一个开始，然后到最后一个。
  */
-class SolutionLTSecond {
+class SolutionLT744Second {
     public static void main(String[] args) {
-        SolutionLTSecond lt = new SolutionLTSecond();
+        SolutionLT744Second lt = new SolutionLT744Second();
         System.out.println(lt.nextGreatestLetter(new char[]{'c', 'f', 'j'},'a'));
         System.out.println(lt.nextGreatestLetter(new char[]{'c', 'f', 'j'},'c'));
         System.out.println(lt.nextGreatestLetter(new char[]{'c', 'f', 'j'},'d'));
