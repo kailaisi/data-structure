@@ -72,6 +72,7 @@ class SolutionLT1337 {
 
 
     public int[] kWeakestRows(int[][] mat, int k) {
+        // TODO: 2021-01-10 未完成
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < mat.length; i++) {
             // ints[i] = findLengh(mat[i]);
@@ -102,7 +103,7 @@ class SolutionLT1337 {
         }
 
         if (ints[end]==1){
-            return end+1;
+            return 1;
         }
         while (start + 1 < end) {
             int mid = (start + end) / 2;
