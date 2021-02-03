@@ -40,13 +40,14 @@ class SolutionLT973Second {
         System.out.println(lt.kClosest(new int[][]{{1,3},{-2,2}},1));//[-2,2]
         System.out.println(lt.kClosest(new int[][]{{3,3},{5,-1},{-2,4}},2));//[[3,3],[-2,4]]
         System.out.println(lt.kClosest(new int[][]{{2, 2}, {2, 2}, {1, 1}, {2, 2}, {2, 2}, {2, 2}, {2, 2}}, 1));//[1,1]
+        System.out.println(lt.kClosest(new int[][]{{-5,4}, {-6,-5}, {4,6}}, 2));//[[-5,4],[4,6]]
     }
 
     public int[][] kClosest(int[][] points, int K) {
         PriorityQueue<int[]> queue = new PriorityQueue<int[]>(new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
-                return  (o2[0] * o2[0] + o2[1] * o2[1])-o1[0] * o1[0] + o1[1] * o1[1] ;
+                return  (o2[0] * o2[0] + o2[1] * o2[1])-(o1[0] * o1[0] + o1[1] * o1[1]) ;
             }
         });
         int length = points.length;
