@@ -46,8 +46,8 @@ class SolutionLT973Third {
 
     public static void main(String[] args) {
         SolutionLT973Third lt = new SolutionLT973Third();
-        // System.out.println(lt.kClosest(new int[][]{{1, 3}, {-2, 2}}, 1));//[-2,2]
-        // System.out.println(lt.kClosest(new int[][]{{3, 3}, {5, -1}, {-2, 4}}, 2));//[[3,3],[-2,4]]
+        System.out.println(lt.kClosest(new int[][]{{1, 3}, {-2, 2}}, 2));//[-2,2]
+         System.out.println(lt.kClosest(new int[][]{{3, 3}, {5, -1}, {-2, 4}}, 2));//[[3,3],[-2,4]]
         System.out.println(lt.kClosest(new int[][]{{2, 2}, {2, 2}, {1, 1}, {2, 2}, {2, 2}, {2, 2}, {2, 2}}, 1));//[1,1]
     }
 
@@ -57,18 +57,23 @@ class SolutionLT973Third {
     }
 
     private void range(int[][] points, int left, int right, int k) {
+        if(right<=left){
+            return;
+        }
         int point = random.nextInt(right - left + 1) + left;
         //步骤1  将随机位置point移动到末尾
         swap(points, point, right);
         //步骤2  从头遍历，两个指针，比point位置大的，移动到右侧
         int start = left - 1;
         for (int i = left; i < right; i++) {
-            if (compare(points, i, right) <= 0) {
-                swap(points, ++start, i);
+            if (compare(points, i, right) < 0) {//这里注意，我们需要将比它小的进行左移，而相等的则不需要左移否则可能会导致跟它相同的和他本身没办法区分了
+                start++;
+                swap(points, start, i);
             }
         }
         //步骤3  将比k小的位置的坐标切换回来
-        swap(points, start++, right);
+        start++;
+        swap(points, start, right);
         //步骤3  查看k的坐标，跟K作比较
         if (start == k) {
             return;
@@ -88,9 +93,6 @@ class SolutionLT973Third {
 
 
     private void swap(int[][] points, int k, int end) {
-        if (k==-1){
-            return;
-        }
         int[] temp = points[k];
         points[k] = points[end];
         points[end] = temp;
