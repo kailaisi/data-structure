@@ -26,44 +26,37 @@ package leetcode;
  * 输出: false
  * 解释: 输入为: [5,1,4,null,null,3,6]。
  *      根节点的值为 5 ，但是其右子节点值为 4 。
- * 解题思路：递归方案：这里我们需要找到规律，验证二叉树的话，对于root节点，我们要保障左子树都比当前节点小，右子树都比当前节点大
- *      那么对于root节点来说，可以建立一个函数来确认是否在lower和upper区间之内。
- *      这时候遍历节点。左节点的话，更新upper为root.val。右节点的话，更新lower为root.val。然后进行迭代。
+ * 解题思路：中序排序方式。对于二叉搜索树，其对应的中序遍历满足递增的性质。所以，可以通过该性质来进行该题的解答。
+ * 对于节点，只需要判断当前节点大于其中序遍历的前一个节点即可。
+ *
  * 时间复杂度：O（n）。其中n为节点数。因为每个节点都只遍历一次即可
  * 空间复杂度：O（n）。每次遍历都需要分配对应的栈空间。当节点为单链表的时候，所需要的栈列表达到最大，也就是n
  */
-class SolutionLT98 {
+class SolutionLT98Third {
     public static void main(String[] args) {
-        SolutionLT98 lt = new SolutionLT98();
+        SolutionLT98Third lt = new SolutionLT98Third();
         TreeNode root=new TreeNode(5,new TreeNode(1),new TreeNode(4,new TreeNode(3),new TreeNode(6)));
         //System.out.println(lt.isValidBST(root));
         root=new TreeNode(2,new TreeNode(1),new TreeNode(3));
-        //System.out.println(lt.isValidBST(root));
-
-        root=new TreeNode(2147483647);
         System.out.println(lt.isValidBST(root));
     }
 
+    private long preValue=Long.MIN_VALUE;
+
     public boolean isValidBST(TreeNode root) {
         if (root==null){return true;}
-        return check(root,Long.MAX_VALUE,Long.MIN_VALUE);
-    }
-
-    /**
-     * 检测root以下的节点是否是在两个区间范围以内
-     * @param root
-     * @param maxValue
-     * @param minValue
-     * @return
-     */
-    private boolean check(TreeNode root, long maxValue, long minValue) {
-        if (root==null){
-            return true;
-        }
-        if(root.val<=minValue || root.val>=maxValue){
+        //判断左子树是否满足条件
+        if (!isValidBST(root.left)){
             return false;
         }
-        return check(root.left, root.val, minValue) && check(root.right,maxValue,root.val);
+        //如果当前节点小于前一个节点，则返回false.
+        if (root.val<=preValue){
+            return false;
+        }
+        //将当前节点信息置为pre值
+        preValue=root.val;
+        //判断右子树是否满足条件。
+        return isValidBST(root.right);
     }
 
     public static class TreeNode {
