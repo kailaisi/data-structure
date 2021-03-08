@@ -24,44 +24,28 @@ package leetcode;
  * <p>
  * 1 <= prices.length <= 3 * 10 ^ 4
  * 0 <= prices[i] <= 10 ^ 4
- * 解题思路：暴力法，因为是可以自由交易，不限制次数，所以我们可以选择当天是否交易，然后记录，交易之后手里持有的钱以及当前和是否持有股票。
- * 时间复杂度：O(2^n)
+ * 解题思路：贪心算法：怎么挣钱？只要今天比昨天价格高了，我就是挣钱的。如果今天比昨天低，我就不挣钱，也就是没有利润。所以我只需要将所有的正利润想加即可
+ * 时间复杂度：O(n)
  * 空间复杂度：O(1)
  */
-class SolutionLT122 {
+class SolutionLT122Third {
     public static void main(String[] args) {
-        SolutionLT122 lt = new SolutionLT122();
+        SolutionLT122Third lt = new SolutionLT122Third();
         System.out.println(lt.maxProfit(new int[]{7,1,5,3,6,4}));//7
         System.out.println(lt.maxProfit(new int[]{1,2,3,4,5}));//4
         System.out.println(lt.maxProfit(new int[]{7,6,4,3,1}));//0
     }
 
 
-    int sum=0;
     public int maxProfit(int[] prices) {
-        int res=0;
-        sum=0;
-        int len = prices.length;
-        if (len<2){
-            return 0;
+        int sum=0;
+        for (int i = 1; i < prices.length; i++) {
+            int temp=prices[i]-prices[i-1];
+            if (temp>0){
+                sum+=temp;
+            }
         }
-        sdf(prices,len,0,false,res);
         return sum;
     }
 
-    private void sdf(int[] prices, int len, int index, boolean has, int res) {
-        if (len==index){
-            //当前已经遍历完了，比较当前链路的最终结果
-            sum=Math.max(sum,res);
-            return;
-        }
-        //不操作的分支
-        sdf(prices,len,index+1,has,res);
-        //操作的分支
-        if (has){
-            sdf(prices,len,index+1,false,res+prices[index]);
-        }else{
-            sdf(prices,len,index+1,true,res-prices[index]);
-        }
-    }
 }

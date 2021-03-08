@@ -24,44 +24,34 @@ package leetcode;
  * <p>
  * 1 <= prices.length <= 3 * 10 ^ 4
  * 0 <= prices[i] <= 10 ^ 4
- * 解题思路：暴力法，因为是可以自由交易，不限制次数，所以我们可以选择当天是否交易，然后记录，交易之后手里持有的钱以及当前和是否持有股票。
+ * 解题思路：动态规划。暴力法其实是将所有的情况都表现为一个分支来处理。但是实际情况当第i天的时候，我们只关心前一天可能的最大值。
+ *          也就是，如果前一天持有股票，最大值是多少，前一天不持有股票，最大值是多少。
+ *          可以使用迭代方式来处理。第一天我们的按照0来处理，第一天可以买入，那么当前的现金就是-price[0]
  * 时间复杂度：O(2^n)
  * 空间复杂度：O(1)
  */
-class SolutionLT122 {
+class SolutionLT122Second {
     public static void main(String[] args) {
-        SolutionLT122 lt = new SolutionLT122();
+        SolutionLT122Second lt = new SolutionLT122Second();
         System.out.println(lt.maxProfit(new int[]{7,1,5,3,6,4}));//7
         System.out.println(lt.maxProfit(new int[]{1,2,3,4,5}));//4
         System.out.println(lt.maxProfit(new int[]{7,6,4,3,1}));//0
     }
 
 
-    int sum=0;
     public int maxProfit(int[] prices) {
-        int res=0;
-        sum=0;
         int len = prices.length;
         if (len<2){
             return 0;
         }
-        sdf(prices,len,0,false,res);
-        return sum;
+        int[][] dp=new int[len][2];
+        dp[0][0]=0;
+        dp[0][1]=-prices[0];
+        for (int i=1;i<len;i++){
+            dp[i][0]=Math.max(dp[i-1][0],dp[i-1][1]+prices[i]);
+            dp[i][1]=Math.max(dp[i-1][1],dp[i-1][0]-prices[i]);
+        }
+        return dp[len-1][0];
     }
 
-    private void sdf(int[] prices, int len, int index, boolean has, int res) {
-        if (len==index){
-            //当前已经遍历完了，比较当前链路的最终结果
-            sum=Math.max(sum,res);
-            return;
-        }
-        //不操作的分支
-        sdf(prices,len,index+1,has,res);
-        //操作的分支
-        if (has){
-            sdf(prices,len,index+1,false,res+prices[index]);
-        }else{
-            sdf(prices,len,index+1,true,res-prices[index]);
-        }
-    }
 }
