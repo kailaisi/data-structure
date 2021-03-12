@@ -13,25 +13,31 @@ package leetcode;
  * 输入: [7,6,4,3,1]
  * 输出: 0
  * 解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
- * 解题思路：暴力法。两次迭代，时间比较长
- *  时间复杂度：O(n^2)
- *  空间复杂度：O(1)
+ *  解题思路：动态规划方法
+ *  *  时间复杂度：O(n^2)
+ *  *  空间复杂度：O(1)
+ *
  */
-class SolutionLT121 {
+class SolutionLT121Sencond {
     public static void main(String[] args) {
-        SolutionLT121 lt1078 = new SolutionLT121();
+        SolutionLT121Sencond lt1078 = new SolutionLT121Sencond();
         System.out.println(lt1078.maxProfit(new int[]{7,6,4,3,1}));
     }
 
     public int maxProfit(int[] prices) {
-        int res=0;
-        for (int i=0;i<prices.length;i++){
-            for (int j=i;j<prices.length;j++){
-                if (prices[j]-prices[i]>res){
-                    res=prices[j]-prices[i];
-                }
+        //记录最小值
+        int minPrice = Integer.MAX_VALUE;
+        //记录当前获取到的最大的差额
+        int maxResult = 0;
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
             }
+            int b = prices[i] - minPrice;//这里i的位置肯定比minprice的位置要靠右，
+            //比如说[7,3,5,1,6,4]。那么当迭代到1之前，会记录maxResult是5-3的值，也就是2。
+            //当迭代到1的时候，会记录1，然后继续遍历，6-1=5，会比之前的2大，所以maxResult这时候就修改为了5.
+            maxResult = Math.max(maxResult, b);
         }
-        return res;
+        return maxResult;
     }
 }
