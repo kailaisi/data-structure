@@ -43,13 +43,13 @@ import java.util.HashMap;
  * bills[i] 不是 5 就是 10 或是 20
  * <p>
  * 解题思路：贪心算法。为了能够尽量的能够为后面的客户保证能够找零，对于每个顾客，我们都尽量使用20的，然后再使用10，最后再使用5元的。
- * 时间复杂度：O（mlogm+nlogn）        对两个数组进行排序的时间复杂度为：O（mlogm+nlogn）,排序之后的遍历时间复杂度为：O（m+n）,所以综合的时间复杂度是：O（mlogm+nlogn）
- * 空间复杂度：O（mlogm+nlogn）        对数组排序所占用的空间复杂度是：O（mlogm+nlogn）
+ * 时间复杂度：O（n）
+ * 空间复杂度：O（n）
  */
 class SolutionLT860 {
     public static void main(String[] args) {
         SolutionLT860 lt = new SolutionLT860();
-      //  System.out.println(lt.lemonadeChange(new int[]{5, 5, 5, 10, 20}));//true
+        //  System.out.println(lt.lemonadeChange(new int[]{5, 5, 5, 10, 20}));//true
         //System.out.println(lt.lemonadeChange(new int[]{5, 5, 10}));//true
         //System.out.println(lt.lemonadeChange(new int[]{10, 10}));//false
         System.out.println(lt.lemonadeChange(new int[]{5, 5, 10, 10, 20}));//false
