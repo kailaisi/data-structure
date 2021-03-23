@@ -22,25 +22,26 @@ package leetcode;
  *                  比如从第一个位置开始，我可以跳转到1，2。那么1和2下标哪一个跳的最远，我们就选哪个，毕竟都是两次跳转。
  *        思路：1。记录当前位置，记录当前位置为起点的下一个位置的范围，然后从当前位置到下一个位置范围内的最大跳的距离
  *
- * 时间复杂度：O（N^2）：
+ * 时间复杂度：O（N）：
  * 空间复杂度：O（1）
  */
 class SolutionLT45Second {
     public static void main(String[] args) {
         SolutionLT45Second lt = new SolutionLT45Second();
         System.out.println(lt.jump(new int[]{2,3,1,1,4}));//2
+        System.out.println(lt.jump(new int[]{2,1}));//1
     }
 
     public int jump(int[] nums) {
-        int position=nums.length-1;
+        int end=0;
+        int maxPos=0;
         int count=0;
-        for (int i=0;i<nums.length-1;){
-            int max=0;
-            for (int j = 1; j <nums[i] ; j++) {
-                max=Math.max(nums[j]+i,max);
+        for (int i=0;i<nums.length-1;i++){
+            maxPos=Math.max(maxPos,nums[i]+i);
+            if (i==end){//跳转到了边界位置了
+                end=maxPos;//更新边界
+                count++;//跳一次
             }
-            count+=2;
-            i=max;
         }
         return count;
     }
