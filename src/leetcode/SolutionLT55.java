@@ -16,28 +16,25 @@ package leetcode;
  * 提示：
  * 1 <= nums.length <= 3 * 104
  * 0 <= nums[i] <= 105
- * 解题思路：贪心算法。我们考虑局部最优。我们反向思考，如果跳转到最后一个位置？如果末几位都能跳转到，那么我们考虑离该位置最远的那个点，
- * 这样就可以达到最优解
+ * 解题思路：贪心算法。该算法可以基于45题进行处理。我们依然跳转最大的距离。那么，什么时候无法跳到最后呢？也就是下一个最大的跳转距离就是当前位置了
  * 时间复杂度：O（N^2）：
  * 空间复杂度：O（1）
  */
 class SolutionLT55 {
     public static void main(String[] args) {
         SolutionLT55 lt = new SolutionLT55();
-        System.out.println(lt.jump(new int[]{2, 3, 1, 1, 4}));//2
+        System.out.println(lt.canJump(new int[]{2, 3, 1, 1, 4}));//true
+        System.out.println(lt.canJump(new int[]{3, 2, 1, 0, 4}));//false
     }
 
-    public int jump(int[] nums) {
-        int end = 0;
+    public boolean canJump(int[] nums) {
         int maxPos = 0;
-        int count = 0;
-        for (int i = 0; i < nums.length - 1; i++) {
-            maxPos = Math.max(maxPos, nums[i] + i);
-            if (i == end) {//跳转到了边界位置了
-                end = maxPos;//更新边界
-                count++;//跳一次
+        for (int i = 0; i < nums.length; i++) {
+            if (i>maxPos){
+                return false;
             }
+            maxPos = Math.max(maxPos, nums[i] + i);
         }
-        return count;
+        return true;
     }
 }
