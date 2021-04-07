@@ -1,9 +1,6 @@
 package leetcode;
 
 
-import javax.lang.model.type.ErrorType;
-import java.awt.color.ICC_ColorSpace;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -30,9 +27,9 @@ import java.util.PriorityQueue;
  * 时间复杂度：O（N^2）：
  * 空间复杂度：O（1）
  */
-class SolutionLT767 {
+class SolutionLT767Second {
     public static void main(String[] args) {
-        SolutionLT767 lt = new SolutionLT767();
+        SolutionLT767Second lt = new SolutionLT767Second();
         System.out.println(lt.reorganizeString("aab"));//aba
         System.out.println(lt.reorganizeString("aaab"));//""
     }
@@ -61,32 +58,5 @@ class SolutionLT767 {
                 return ints[o2 - 'a'] - ints[o1 - 'a'];
             }
         });
-        for (int i = 0; i < 26; i++) {
-            if (ints[i] > 0) {
-                queue.add((char) (i + 'a'));
-            }
-        }
-        StringBuilder builder = new StringBuilder();
-        //这里不能用>0，因为我们需要取出两个字符，所以可以留一个最后处理
-        while (queue.size() > 1) {
-            //取出两个字符
-            Character poll = queue.poll();
-            Character poll1 = queue.poll();
-            builder.append(poll).append(poll1);
-            //计数-1
-            ints[poll - 'a']--;
-            ints[poll1 - 'a']--;
-            //若数据仍然大于0，放入到队列，这时候会重新排序，将数量大的放到最前头
-            if (ints[poll - 'a'] > 0) {
-                queue.offer(poll);
-            }
-            if (ints[poll1 - 'a'] > 0) {
-                queue.offer(poll1);
-            }
-        }
-        if (queue.size() > 0) {
-            builder.append(queue.poll());
-        }
-        return builder.toString();
     }
 }
