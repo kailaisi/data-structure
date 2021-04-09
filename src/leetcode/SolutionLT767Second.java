@@ -30,7 +30,8 @@ import java.util.PriorityQueue;
 class SolutionLT767Second {
     public static void main(String[] args) {
         SolutionLT767Second lt = new SolutionLT767Second();
-        System.out.println(lt.reorganizeString("aab"));//aba
+      //  System.out.println(lt.reorganizeString("aab"));//aba
+        System.out.println(lt.reorganizeString("aaabbc"));//aba
         System.out.println(lt.reorganizeString("aaab"));//""
     }
 
@@ -42,21 +43,38 @@ class SolutionLT767Second {
         }
         int maxLength = 0;
         int[] ints = new int[26];
+        //int
+        int maxIndex=0;
         for (int i = 0; i < length; i++) {
             char c = S.charAt(i);
             ints[c - 'a']++;
             maxLength = Math.max(ints[c - 'a'], maxLength);
+            if (maxLength==ints[c-'a']){
+                maxIndex=c-'a';
+            }
         }
         if (maxLength > (length + 1) / 2) {//3个字母的情况下，是可以两个一样的。可以向上取整，也可以+1/2
             return "";
         }
-        //队列，用于保存下一个要取出的数据
-        PriorityQueue<Character> queue = new PriorityQueue<>(new Comparator<Character>() {
-            @Override
-            public int compare(Character o1, Character o2) {
-                //按照在数组中出现的次数多少进行排序
-                return ints[o2 - 'a'] - ints[o1 - 'a'];
+        char[] res=new char[length];
+        int index=0;
+        //先把次数最多的放到偶数位置
+        while (ints[maxIndex]>0){
+            res[index]=(char)(maxIndex+'a');
+            ints[maxIndex]--;
+            index+=2;
+        }
+        //把剩余的依次往后排序
+        for (int i = 0; i < 26; i++) {
+            while (ints[i]-->0){
+                if (index>=length){//超过数组大小了，则直接从奇数位置开始
+                    index=1;
+                }
+                res[index]=(char)(i+'a');
+                index+=2;
             }
-        });
+        }
+        return new String(res);
+
     }
 }
