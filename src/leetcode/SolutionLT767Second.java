@@ -24,13 +24,13 @@ import java.util.PriorityQueue;
  * 解题思路：典型的贪心算法。在进行重排序的过程中，如果某个数据出现的次数过多，那么就无法进行满足最终的结果。什么情况下算是超过了限制条件
  * 当超过一半的情况下，无论如何，都无法满足要求。所以我们需要统计每个数据出现的次数，然后找到出现次数最大的那个数据，如果大于一半就为false
  * 构建返回字符串：可以尝试将最多和次多的取出，依次放入，直到次多完成，再进行最多和次多的处理
- * 时间复杂度：O（N^2）：
+ * 时间复杂度：O（N）：每次都是遍历都是一个复杂度
  * 空间复杂度：O（1）
  */
 class SolutionLT767Second {
     public static void main(String[] args) {
         SolutionLT767Second lt = new SolutionLT767Second();
-      //  System.out.println(lt.reorganizeString("aab"));//aba
+        System.out.println(lt.reorganizeString("aab"));//aba
         System.out.println(lt.reorganizeString("aaabbc"));//aba
         System.out.println(lt.reorganizeString("aaab"));//""
     }
