@@ -35,14 +35,20 @@ package leetcode;
 class SolutionLT402 {
     public static void main(String[] args) {
         SolutionLT402 lt = new SolutionLT402();
-        System.out.println(lt.removeKdigits("1432219", 3));//aba
-        System.out.println(lt.reorganizeString("aaab"));//""
+        System.out.println(lt.removeKdigits("1432219", 3));//1219
+        System.out.println(lt.removeKdigits("10200", 1));//200
+        System.out.println(lt.removeKdigits("10", 2));//0
+        System.out.println(lt.removeKdigits("12345", 2));//0
     }
 
     public String removeKdigits(String num, int k) {
         //反转，
         String reverse = new StringBuffer(num).reverse().toString();
         int length = num.length();
+        k = length - k;
+        if (k <= 0) {
+            return "0";
+        }
         char[] chars = reverse.substring(0, k).toCharArray();
         int lastIndex = 0;
         for (int i = 0; i < length; i++) {
@@ -56,16 +62,28 @@ class SolutionLT402 {
             } else {
                 if (c <= chars[k - 1]) {//这里需要处理了
                     //从k-i位置开始，往前移动,找到第一个比charAt[i]大的，替换掉
+                    //54321   543   2  1
+                    //9122  1
+                   char temp=c;
                     for (int j = k - 1; j >= 0; j--) {
-                        if (chars[j] > c) {
+                        if (chars[j] >= temp) {
+                            //将【j】保存到temp，然后替换当前j的数据为上一个temp数据
+                            c=temp;
+                            temp=chars[j];
                             chars[j] = c;
+                        }else {
                             break;
                         }
                     }
                 }//如果比最后一个大，则不需要处理
             }
         }
-        String res = new StringBuffer(new String(chars)).reverse().toString();
-        return res;
+        StringBuffer buffer = new StringBuffer(new String(chars)).reverse();
+        //去掉前导0,但是要保证，最后一个不能删除，因为不能返回""
+        while (buffer.length() > 1 && buffer.charAt(0) == '0') {
+            buffer.deleteCharAt(0);
+        }
+
+        return buffer.toString();
     }
 }
