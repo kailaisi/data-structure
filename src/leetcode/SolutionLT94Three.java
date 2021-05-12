@@ -3,6 +3,7 @@ package leetcode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 94. 二叉树的中序遍历
@@ -42,30 +43,44 @@ import java.util.List;
  *
  *
  * 进阶: 递归算法很简单，你可以通过迭代算法完成吗？
- * 解题思路：迭代。迭代相当于将递归的栈处理拿出来进行记录
+ * 解题思路：颜色标记法。具体使用规则参考算法文件的xmind
  * 时间复杂度：O(n)  只进行一次遍历
  * 空间复杂度：O(n)
  */
-class SolutionLT94Second {
+class SolutionLT94Three {
     public static void main(String[] args) {
-        SolutionLT94Second lt = new SolutionLT94Second();
+        SolutionLT94Three lt = new SolutionLT94Three();
         TreeNode node=new TreeNode(1,null,new TreeNode(2,new TreeNode(3),null));
         lt.inorderTraversal(node);
     }
 
     public List<Integer> inorderTraversal(TreeNode root) {
         ArrayList<Integer> list = new ArrayList<>();
-        LinkedList<TreeNode> linkedList = new LinkedList<>();
-        while (root!=null || !linkedList.isEmpty()) {
-            while (root != null) {
-                linkedList.push(root);
-                root = root.left;
+        if (root==null){
+            return list;
+        }
+        Stack<Node> nodes = new Stack<>();
+        nodes.push(new Node(root,false));
+        while (!nodes.isEmpty()){
+            Node pop = nodes.pop();
+            if(!pop.used){
+                if (pop.node.right!=null) nodes.push(new Node(pop.node.right,false));
+                nodes.push(new Node(pop.node,true));
+                if (pop.node.left!=null) nodes.push(new Node(pop.node.left,false));
+            }else{
+                list.add(pop.node.val);
             }
-            root=linkedList.pop();
-            list.add(root.val);
-            root=root.right;
         }
         return list;
+    }
+
+    public static class Node{
+        TreeNode node;
+        boolean used;
+        public Node(TreeNode node,boolean used){
+            this.node=node;
+            this.used=used;
+        }
     }
 
     public static class TreeNode {
