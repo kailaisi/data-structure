@@ -63,8 +63,8 @@ class SolutionLT144Fore {
             left = cur.left;
             //有左节点
             if (left != null) {
-                //找到当前节点的最右边数据
-                while (left.right != null && left.right.right != cur) {
+                //找到当前节点的最右边节点
+                while (left.right != null && left.right != cur) {
                     left = left.right;
                 }
                 if (left.right == null) {//找到了最右边的节点，并且没有建立连接
@@ -75,9 +75,10 @@ class SolutionLT144Fore {
                 } else {
                     left.right = null;
                 }
-            } else {//没有左节点了
+            } else {//没有左节点了，直接记录数据
                 res.add(cur.val);
             }
+            cur=cur.right;
         }
         return res;
     }
