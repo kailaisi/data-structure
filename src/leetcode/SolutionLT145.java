@@ -26,9 +26,9 @@ class SolutionLT145 {
     public static void main(String[] args) {
         SolutionLT145 lt = new SolutionLT145();
         TreeNode root = new TreeNode(1, null,new TreeNode(2, new TreeNode(3),null));
-        System.out.println(lt.preorderTraversal(root));
+        System.out.println(lt.postorderTraversal(root));
     }
-    public List<Integer> preorderTraversal(TreeNode root) {
+    public List<Integer> postorderTraversal(TreeNode root) {
         ArrayList<Integer> list = new ArrayList<>();
         postorderTraversal(list,root);
         return list;

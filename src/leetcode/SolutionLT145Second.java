@@ -27,9 +27,9 @@ class SolutionLT145Second {
     public static void main(String[] args) {
         SolutionLT145Second lt = new SolutionLT145Second();
         TreeNode root = new TreeNode(1, null,new TreeNode(2, new TreeNode(3),null));
-        System.out.println(lt.preorderTraversal(root));
+        System.out.println(lt.postorderTraversal(root));
     }
-    public List<Integer> preorderTraversal(TreeNode root) {
+    public List<Integer> postorderTraversal(TreeNode root) {
         ArrayList<Integer> list = new ArrayList<>();
         if (root==null){
             return list;
@@ -39,18 +39,25 @@ class SolutionLT145Second {
         LinkedList<TreeNode> nodes = new LinkedList<>();
 
         while (!nodes.isEmpty() || root!=null){
+            //加入所有的左节点
             while (root!=null){
                 nodes.add(root);
                 root=root.left;
             }
             //弹出
-            TreeNode pop = nodes.pop();
-            if (pop.right!=null && pop.right!=pre){
-                nodes.push(pop);
-
-                nodes.push(pop.right);
+             root = nodes.pop();
+            if (root.right!=null && root.right!=pre){
+                //右子树存在，并且没有访问过，那么就访问右节点，
+                //把跟节点先放进队列中
+                nodes.push(root);
+                root=root.right;
             }else{
-                list.add(pop.val);
+                list.add(root.val);
+                //记录当前访问的节点为pre，
+                // 那么下一次pop出来的，如果发现其右节点=当前节点
+                // 证明是已经遍历完成的右节点
+                pre=root;
+                root=null;
             }
         }
         return list;
