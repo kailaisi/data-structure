@@ -23,13 +23,13 @@ import java.util.List;
  * [20,9],
  * [15,7]
  * ]
- * 解题思路：递归调用，按照层级遍历，如果是奇数的行，则直接revert对应的数据
+ * 解题思路：栈，todo 待写
  */
-class LeetCode103 {
+class LeetCode103Second {
     public static void main(String[] args) {
-        System.out.println(new LeetCode103().zigzagLevelOrder(new TreeNode(3, new TreeNode(9, new TreeNode(15), null), new TreeNode(20, null, new TreeNode(7)))));
+        System.out.println(new LeetCode103Second().zigzagLevelOrder(new TreeNode(3, new TreeNode(9, new TreeNode(15), null), new TreeNode(20, null, new TreeNode(7)))));
         TreeNode root = new TreeNode(0, new TreeNode(2, new TreeNode(1, new TreeNode(5), new TreeNode(1)), null), new TreeNode(4, new TreeNode(3, null, new TreeNode(6)), new TreeNode(-1, null, new TreeNode(8))));
-        System.out.println(new LeetCode103().zigzagLevelOrder(root));
+        System.out.println(new LeetCode103Second().zigzagLevelOrder(root));
     }
 
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
@@ -38,31 +38,8 @@ class LeetCode103 {
         if (root == null) {
             return lists;
         }
-        nodes.add(root);
-        addNodes(lists, nodes, 0);
+        // TODO: 2021/6/1
         return lists;
-    }
-
-    private void addNodes(ArrayList<List<Integer>> lists, ArrayList<TreeNode> nodes, int deep) {
-        ArrayList<Integer> list = new ArrayList<>();
-        ArrayList<TreeNode> nodes1 = new ArrayList<>();
-        if (nodes.size() == 0) {
-            return;
-        }
-        for (TreeNode node : nodes) {
-            list.add(node.val);
-            if (node.left != null) {
-                nodes1.add(node.left);
-            }
-            if (node.right != null) {
-                nodes1.add(node.right);
-            }
-        }
-        if (deep % 2 == 1) {
-            Collections.reverse(list);
-        }
-        lists.add(list);
-        addNodes(lists, nodes1, deep + 1);
     }
 
     public static class TreeNode {
