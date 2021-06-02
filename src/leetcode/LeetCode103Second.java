@@ -1,8 +1,6 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * 103. 二叉树的锯齿形层序遍历
@@ -23,7 +21,8 @@ import java.util.List;
  * [20,9],
  * [15,7]
  * ]
- * 解题思路：栈，todo 待写
+ * 解题思路：栈。为了能够区分层数，我们通过栈来处理
+ * 处理方式：每次迭代，拿出当前栈的所有数据，然后逐个遍历，并记录当前是否是逆序。如果是逆序的，直接addFirst来添加到list中。
  */
 class LeetCode103Second {
     public static void main(String[] args) {
@@ -34,11 +33,33 @@ class LeetCode103Second {
 
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         ArrayList<List<Integer>> lists = new ArrayList<>();
-        ArrayList<TreeNode> nodes = new ArrayList<>();
+        Queue<TreeNode> nodes = new LinkedList<>();
         if (root == null) {
             return lists;
         }
-        // TODO: 2021/6/1
+        nodes.offer(root);
+        //从左边开始的标记位置
+        boolean isLeft = true;
+        while (!nodes.isEmpty()) {
+            LinkedList<Integer> list = new LinkedList<>();
+            int size = nodes.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode poll = nodes.poll();
+                if (isLeft) {
+                    list.addLast(poll.val);
+                } else {
+                    list.addFirst(poll.val);
+                }
+                if (poll.left != null) {
+                    nodes.offer(poll.left);
+                }
+                if (poll.right != null) {
+                    nodes.offer(poll.right);
+                }
+            }
+            lists.add(list);
+            isLeft=!isLeft;
+        }
         return lists;
     }
 
