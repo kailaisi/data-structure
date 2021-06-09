@@ -19,6 +19,8 @@ class LeetCode739Second {
     public static void main(String[] args) {
         int[] ints = new LeetCode739Second().dailyTemperatures(new int[]{73, 74, 75, 71, 69, 72, 76, 73});
         System.out.println(Arrays.toString(ints));
+        ints = new LeetCode739Second().dailyTemperatures(new int[]{30,40,50,60});
+        System.out.println(Arrays.toString(ints));
     }
 
     public int[] dailyTemperatures(int[] temperatures) {
@@ -26,7 +28,7 @@ class LeetCode739Second {
         int[] ints = new int[length];
         //保存下标
         LinkedList<Integer> list = new LinkedList<>();
-        for (int i = 0; i < length - 1; i++) {
+        for (int i = 0; i < length; i++) {
             int temperature = temperatures[i];
             while (!list.isEmpty() && temperatures[list.peek()]<temperature){
                 Integer index = list.pop();
