@@ -9,22 +9,39 @@ package leetcode;
  * 输入：hours = [9,9,6,0,6,6,9]
  * 输出：3
  * 解释：最长的表现良好时间段是 [9,9,6]。
- * 解题思路：
+ * 解题思路：我们可以先对数组进行一下处理，如果大于8小时，则计数+1，小于则-1，然后通过暴力法进行统计
+ * 空间复杂度：O(n^2)
+ * 时间复杂度：O(n)
  */
 class SolutionLT1124 {
-    //todo 动态规划
     public static void main(String[] args) {
-        int[] hours = new int[]{9, 9, 6, 0, 6, 6, 9};
-        System.out.println(new SolutionLT1124().longestWPI(hours));
+        System.out.println(new SolutionLT1124().longestWPI(new int[]{9, 9, 6, 0, 6, 6, 9}));
+        System.out.println(new SolutionLT1124().longestWPI(new int[]{6, 9, 9}));
+        System.out.println(new SolutionLT1124().longestWPI(new int[]{6, 6, 6}));
     }
 
     public int longestWPI(int[] hours) {
-        int[] arr=new int[hours.length+1];
-        arr[0]=0;
-        for (int i = 0; i < hours.length; i++) {
-            arr[i+1]=arr[i]+hours[i]>8?1:-1;
+        int n = hours.length;
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            if (hours[i] > 8) {
+                arr[i] = 1;
+            } else {
+                arr[i] = -1;
+            }
         }
-        //然后计算连续都为正的
-        return 0;
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            int count = 0;
+            for (int j = i; j < n; j++) {
+                count += arr[j];
+                if (count > 0)
+                    res = Math.max(res, j - i + 1);
+            }
+            /*如果发现i，j之间的所有数据是满足条件的，那么没有必要再遍历了，因为不可能剩下的比当前res还大了*/
+            if (n - i <= res)
+                return res;
+        }
+        return res;
     }
 }
