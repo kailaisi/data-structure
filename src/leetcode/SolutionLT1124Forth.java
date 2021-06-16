@@ -8,7 +8,7 @@ import java.util.Stack;
  * 所谓「表现良好的时间段」，意味在这段时间内，「劳累的天数」是严格 大于「不劳累的天数」。
  * 请你返回「表现良好时间段」的最大长度。
  * 示例 1：
- * 输入：hours = [9,9,6,0,9，9,9]
+ * 输入：hours = [9,9,6,0,6,6,9]
  * 输出：3
  * 解释：最长的表现良好时间段是 [9,9,6]。
  * 解题思路：单调栈方案。本题本质上是寻找最长的上坡距离。也就是寻找最长的区间满足p[j]>p[i]。
@@ -23,7 +23,7 @@ import java.util.Stack;
  */
 class SolutionLT1124Forth {
     public static void main(String[] args) {
-        System.out.println(new SolutionLT1124Forth().longestWPI(new int[]{9, 9, 6, 0, 6, 6, 9}));
+        System.out.println(new SolutionLT1124Forth().longestWPI(new int[]{9,9,6,0,6,6,9}));
         System.out.println(new SolutionLT1124Forth().longestWPI(new int[]{6, 9, 9}));
         System.out.println(new SolutionLT1124Forth().longestWPI(new int[]{6, 6, 9}));
     }
@@ -37,9 +37,10 @@ class SolutionLT1124Forth {
         }
         int res = 0;
         Stack<Integer> stack = new Stack<Integer>();
+        stack.push(0);
         /*找单调递减栈*/
         for (int i = 1; i <= n; i++) {
-            if (stack.isEmpty()|| stack.peek()<preRes[i]){
+            if (stack.isEmpty()|| preRes[stack.peek()]>preRes[i]){
                 stack.push(i);
             }
         }
