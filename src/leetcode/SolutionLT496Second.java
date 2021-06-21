@@ -42,11 +42,11 @@ import java.util.Arrays;
  * 空间复杂度：O(n^2)
  * 时间复杂度：O(n)
  */
-class SolutionLT496 {
+class SolutionLT496Second {
     public static void main(String[] args) {
-        int[] ints = new SolutionLT496().nextGreaterElement(new int[]{4,1,2}, new int[]{1,3,4,2});
+        int[] ints = new SolutionLT496Second().nextGreaterElement(new int[]{4,1,2}, new int[]{1,3,4,2});
         System.out.println(Arrays.toString(ints));
-         ints = new SolutionLT496().nextGreaterElement(new int[]{2, 4}, new int[]{1, 2, 3, 4});
+         ints = new SolutionLT496Second().nextGreaterElement(new int[]{2, 4}, new int[]{1, 2, 3, 4});
         System.out.println(Arrays.toString(ints));
 
     }
