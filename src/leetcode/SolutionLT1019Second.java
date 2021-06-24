@@ -1,6 +1,8 @@
 package leetcode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Stack;
 
 /**
  * 1019. 链表中的下一个更大节点
@@ -24,15 +26,15 @@ import java.util.*;
  * <p>
  * 对于链表中的每个节点，1 <= node.val <= 10^9
  * 给定列表的长度在 [0, 10000] 范围内
- * 解题思路：暴力法。先将列表转化为数组，然后使用数组的方案建立单调栈
+ * 解题思路：单调栈方案。先将列表转化为数组，然后使用数组的方案建立单调栈
  * 空间复杂度：O(n)
- * 时间复杂度：O(n^2)
+ * 时间复杂度：O(n)
  */
-class SolutionLT1019 {
+class SolutionLT1019Second {
     public static void main(String[] args) {
-        int[] ints = new SolutionLT1019().nextLargerNodes(new ListNode(2,new ListNode(1,new ListNode(5))));
+        int[] ints = new SolutionLT1019Second().nextLargerNodes(new ListNode(2,new ListNode(1,new ListNode(5))));
         System.out.println(Arrays.toString(ints));
-         ints = new SolutionLT1019().nextLargerNodes(new ListNode(2,new ListNode(7,new ListNode(4,new ListNode(3,new ListNode(5))))));
+         ints = new SolutionLT1019Second().nextLargerNodes(new ListNode(2,new ListNode(7,new ListNode(4,new ListNode(3,new ListNode(5))))));
         System.out.println(Arrays.toString(ints));
 
     }
@@ -51,15 +53,15 @@ class SolutionLT1019 {
             ints[i]=list.get(i);
         }
         /*这里要保存位置信息*/
+        Stack<Integer> stack = new Stack<>();
         int[] res = new int[size];
         for (int i = 0; i < size; i++) {
-            for (int j = i+1; j < size; j++) {
-                if (ints[j]>ints[i]){
-                    res[i]=ints[j];
-                    break;
-                }
+            while(!stack.isEmpty() && ints[stack.peek()]<ints[i]){
+                res[stack.pop()]=ints[i];
             }
+            stack.push(i);
         }
+
 
         return res;
     }
