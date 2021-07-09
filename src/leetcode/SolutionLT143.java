@@ -36,21 +36,28 @@ class SolutionLT143 {
         while (list != null) {
             //保存到栈中
             listNodeStack.push(list);
-            list = list.right;
+            list = list.next;
         }
         while (head != null) {
             ListNode pop = listNodeStack.pop();
-            // TODO: 2021/7/8  这里的暂停条件要处理
-            if (pop != head && head.right != pop) {
+            if (pop != head) {
                 //改变指针指向
-                ListNode temp = head.right;
-                head.right = pop;
-                pop.right = temp;
+                ListNode temp = head.next;
+                head.next = pop;
+                pop.next = temp;
                 //这里要指向pop的右侧
                 head = temp;
+                if (pop.next == pop) {//偶数个数的时候，会出现这种
+                    pop.next = null;
+                    break;
+                }
+                /*if (head == listNodeStack.peek()) {//奇数个数的时候会出现这种
+                    head.next = null;
+                    break;
+                }*/
             } else {
-                head.right = null;
-                head = head.right;
+                head.next = null;
+                head = null;
             }
         }
         System.out.println(root);
@@ -59,7 +66,7 @@ class SolutionLT143 {
 
     public static class ListNode {
         int val;
-        ListNode right;
+        ListNode next;
 
         ListNode() {
         }
@@ -68,9 +75,9 @@ class SolutionLT143 {
             this.val = val;
         }
 
-        ListNode(int val, ListNode right) {
+        ListNode(int val, ListNode next) {
             this.val = val;
-            this.right = right;
+            this.next = next;
         }
     }
 }
