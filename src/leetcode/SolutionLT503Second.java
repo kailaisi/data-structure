@@ -21,24 +21,26 @@ import java.util.Stack;
  * * 时间复杂度：O（N^2）：需要2次遍历
  * * 空间复杂度：O（N）：需要用列表来保存
  */
-class SolutionLT503 {
+class SolutionLT503Second {
     public static void main(String[] args) {
-        SolutionLT503 lt = new SolutionLT503();
+        SolutionLT503Second lt = new SolutionLT503Second();
         System.out.println(Arrays.toString(lt.nextGreaterElements(new int[]{1,2,1})));//true
     }
 
-
     public int[] nextGreaterElements(int[] nums) {
+        //stack最好保存下标位置
+        Stack<Integer> stack = new Stack<>();
         int length = nums.length;
         int[] res = new int[length];
-        for (int i = 0; i < length; i++) {
-            res[i] = -1;
-            for (int j = i; j < length + i; j++) {
-                if (nums[j % length] > nums[i]) {
-                    res[i] = nums[j % length];
-                    break;
-                }
+        for (int i = 0; i < 2 * length; i++) {
+            if (i<length) {
+                res[i] = -1;
             }
+            while (!stack.isEmpty() && nums[stack.peek()] < nums[i % length]) {
+                Integer pop = stack.pop();
+                res[pop] = nums[i % length];
+            }
+            stack.push(i % length);
         }
         return res;
     }
