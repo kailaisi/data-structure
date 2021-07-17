@@ -1,6 +1,5 @@
 package leetcode;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -14,14 +13,14 @@ import java.util.Stack;
  * 输出: true
  * 进阶：
  * 你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？
- * 解题思路：暴力法    判断是否回文，其实相当于从中间位置开始，然后将前后的进行折叠即可。
- * 可以将链表的数据存入数组，然后从中间开始往前往后，逐一进行比较
- * * 时间复杂度：O（N）：需要一次遍历
- * * 空间复杂度：O（N）：需要用列表来保存
+ * 解题思路：判断是否回文，其实相当于从中间位置开始，然后将前后的进行折叠即可。
+ * 那么是否可以进行快慢指针，将慢指针在遍历的过程中，进行指针的反转，这样，当指到中间位置的时候，直接向两侧遍历即可。
+ * * 时间复杂度：O（N）：
+ * * 空间复杂度：O（1）
  */
-class SolutionLT234 {
+class SolutionLT234Second {
     public static void main(String[] args) {
-        SolutionLT234 lt = new SolutionLT234();
+        SolutionLT234Second lt = new SolutionLT234Second();
         System.out.println(lt.isPalindrome(new ListNode(1)));//true
         System.out.println(lt.isPalindrome(new ListNode(1, new ListNode(2))));//false
         System.out.println(lt.isPalindrome(new ListNode(1, new ListNode(2, new ListNode(3)))));//false
@@ -30,18 +29,35 @@ class SolutionLT234 {
     }
 
     public boolean isPalindrome(ListNode head) {
-        ArrayList<ListNode> list = new ArrayList<>();
-        while (head != null) {
-            list.add(head);
-            head = head.next;
+        ListNode fast = head;
+        ListNode slow = head;
+        ListNode pre = null;
+        while (fast != null && fast.next != null) {
+            //快指针
+            fast = fast.next.next;
+            //反转，使得原来的slow指向之前的pre，而新的slow指向下一个
+            //下一个
+            ListNode tmp = slow.next;
+            //指针反转
+            slow.next = pre;
+            //保存pre
+            pre = slow;
+            //指向下一个指针
+            slow = tmp;
         }
-        //个数是10   那么就比较position的到i=0-4    9-i
-        //个数是9   那么就比较position的到i=0-3    9-i  0 1 2 3    5  6  7  8
-        int size = list.size();
-        for (int i = 0; i < size / 2; i++) {
-            if (list.get(i).val != list.get(size - i - 1).val) {
+        if (fast == null) {//slow是中间靠右的位置
+            fast = slow;
+            slow = pre;
+        } else {//slow是正中间位置。
+            fast = slow.next;
+            slow = pre;
+        }
+        while (slow != null) {
+            if (slow.val != fast.val) {
                 return false;
             }
+            slow = slow.next;
+            fast = fast.next;
         }
         return true;
     }
