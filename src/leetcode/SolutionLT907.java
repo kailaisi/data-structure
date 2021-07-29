@@ -40,7 +40,8 @@ import java.util.Stack;
 class SolutionLT907 {
     public static void main(String[] args) {
         SolutionLT907 lt = new SolutionLT907();
-        System.out.println(lt.sumSubarrayMins(new int[]{3, 1, 2, 4}));
+        System.out.println(lt.sumSubarrayMins(new int[]{3, 1, 2, 4}));//
+        System.out.println(lt.sumSubarrayMins(new int[]{11,81,94,43,3}));//
     }
 
     public int sumSubarrayMins(int[] arr) {
@@ -48,21 +49,34 @@ class SolutionLT907 {
         //这里我们保存的是坐标信息
         Stack<Integer> stack = new Stack<>();
         int length = arr.length;
+        //左侧比当前位置
+       /* int[] left = new int[length];
+        int[] right = new int[length];*/
         int res = 0;
         for (int i = 0; i < length; i++) {
-            while (!stack.isEmpty() && arr[stack.peek()] > arr[i]) {
+            while (!stack.isEmpty() && arr[stack.peek()] >= arr[i]) {
                 //这里我们可以找到右侧比当前位置大的数据
                 Integer pop = stack.pop();
                 //左侧的呢？当然就是再pop一个了
-                int right = i;
-                int left = 0;
+                int left = -1;
                 if (!stack.isEmpty()) {
                     left = stack.peek();
                 }
-                res += arr[pop] * (right + 1 - pop) * (pop + 1 - left) % mode;
+                res += (arr[pop] * (i - pop) * (pop - left)) % mode;
                 res = res % mode;
             }
             stack.push(i);
+        }
+        //现在栈内数据是递增的了，可以逐个弹出然后处理了
+        while (!stack.isEmpty()) {
+            Integer pop = stack.pop();
+            //左侧的呢？当然就是再pop一个了
+            int left = -1;
+            if (!stack.isEmpty()) {
+                left = stack.peek();
+            }
+            res += ((long)arr[pop] * (length - pop) * (pop - left)) % mode;
+            res = res % mode;
         }
         return res;
     }
