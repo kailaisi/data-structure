@@ -41,6 +41,7 @@ class SolutionLT1763 extends GuessGame {
     }
 
     public String longestNiceSubstring(String s) {
-
+        // TODO: 2021/7/30
+        return s;
     }
 }
