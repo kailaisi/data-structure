@@ -12,8 +12,8 @@ import java.util.*
 class BucketSort {
     fun sort(inputArray: DoubleArray): DoubleArray {
         //得到数组的最大值最小值
-        var max = inputArray.max()!!
-        var min = inputArray.min()!!
+        var max = inputArray.maxOrNull()!!
+        var min = inputArray.minOrNull()!!
         //创建数组来存放最大最小值范围之内的数据
         val d = max - min
         //桶的个数

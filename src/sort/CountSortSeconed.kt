@@ -9,8 +9,8 @@ package sort
 class CountSortSeconed  {
     fun sort(intArray: IntArray): IntArray {
         //得到数组的最大值最小值
-        var max=intArray.max()!!
-        var min=intArray.min()!!
+        var max= intArray.maxOrNull()!!
+        var min= intArray.minOrNull()!!
         //创建数组来存放最大最小值范围之内的数据
         var ints = IntArray(max - min + 1)
         intArray.forEach {
