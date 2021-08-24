@@ -1,9 +1,6 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * 239. 滑动窗口最大值
@@ -62,19 +59,27 @@ class SolutionLT239 extends GuessGame {
     }
 
     public int[] maxSlidingWindow(int[] nums, int k) {
-        PriorityQueue<Integer> queue = new PriorityQueue<>();
-        ArrayList<Integer> list = new ArrayList<>();
-        for (int i = 0; i < nums.length; i++) {
-            queue.add(nums[i]);
-            if (i >= k) {
-                list.add(queue.peek());
-                queue.remove(i - k);
+        //会按照大小进行排序
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>(new Comparator<int[]>() {
+            public int compare(int[] pair1, int[] pair2) {
+                return pair1[0] != pair2[0] ? pair2[0] - pair1[0] : pair2[1] - pair1[1];
             }
+        });
+        int n = nums.length;
+        for (int i = 0; i < k; ++i) {
+            pq.offer(new int[]{nums[i], i});
         }
-        int[] ints = new int[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            ints[i] = list.get(i);
+        //最后的返回结果
+        int[] ans = new int[n - k + 1];
+        ans[0] = pq.peek()[0];
+        for (int i = k; i < n; ++i) {
+            pq.offer(new int[]{nums[i], i});
+            while (pq.peek()[1] <= i - k) {
+                //将下标不在滑动窗口中的元素都干掉
+                pq.poll();
+            }
+            ans[i - k + 1] = pq.peek()[0];
         }
-        return ints;
+        return ans;
     }
 }
